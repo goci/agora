@@ -87,6 +87,7 @@ module.exports = function (grunt) {
         configFile: "node_modules/grunt-protractor-runner/node_modules/protractor/referenceConf.js",
         keepAlive: true,
         noColor: false,
+        chromeDriver: '/opt/google/chrome',
         args: {
           params: ['no-sandbox']
         }

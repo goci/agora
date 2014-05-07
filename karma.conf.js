@@ -60,6 +60,9 @@ module.exports = function(config) {
       ChromeNoSandbox: { base: 'Chrome', flags: ['--no-sandbox'] }
     },
 
+    plugins: [
+      'karma-chrome-launcher'
+    ],
 
     // If browser does not capture in given timeout [ms], kill it
     captureTimeout: 60000,

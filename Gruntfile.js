@@ -112,7 +112,7 @@ module.exports = function (grunt) {
         command: 'parse deploy'
       },
       announce: {
-        command: 'curl -s -X POST --data-urlencode payload=' + JSON.stringify('{"channel": "#general", "icon_emoji": ":monkey_face:", "username": "deploy", "text": "New version deployed to <https://dev.deliberare.com.br|the dev environment>! by `git config user.name`"}') + ' https://deliberare.slack.com/services/hooks/incoming-webhook?token=00AslaqafRD6hlO2YcGEpm4v'
+        command: 'curl -s -X POST --data-urlencode payload=' + JSON.stringify('{"channel": "#general", "icon_emoji": ":monkey_face:", "username": "deploy", "text": "New version deployed to <https://dev.deliberare.com.br|the dev environment> by `git config user.name`."}') + ' https://deliberare.slack.com/services/hooks/incoming-webhook?token=00AslaqafRD6hlO2YcGEpm4v'
       }
     }
   });

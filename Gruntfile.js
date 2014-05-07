@@ -41,6 +41,13 @@ module.exports = function (grunt) {
         options: {
           nospawn: true
         }
+      },
+      html: {
+        files: ['lib/html/**/*.html'],
+        tasks: ['concat:dist'],
+        options: {
+          nospawn: true
+        }
       }
     }
   });

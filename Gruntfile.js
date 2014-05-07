@@ -2,6 +2,10 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      dist: {
+        src: ['lib/html/index.html'],
+        dest: 'public/index.html'
+      },
       js: {
         options: {
           separator: ';',

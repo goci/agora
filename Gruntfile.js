@@ -110,6 +110,9 @@ module.exports = function (grunt) {
     exec: {
       deploy: {
         command: 'parse deploy'
+      },
+      announce: {
+        command: 'curl -s -X POST --data-urlencode \'payload={"channel": "#general", "icon_emoji": ":monkey_face:", "username": "deploy", "text": "New version deployed to <https://dev.deliberare.com.br|the dev environment>!"}\' https://deliberare.slack.com/services/hooks/incoming-webhook?token=00AslaqafRD6hlO2YcGEpm4v'
       }
     }
   });
@@ -126,5 +129,5 @@ module.exports = function (grunt) {
   grunt.registerTask('test_functional', ['protractor:test']);
   grunt.registerTask('test_unit', ['karma:unit']);
 
-  grunt.registerTask('deploy', ['default', 'exec:deploy']);
+  grunt.registerTask('deploy', ['default', 'exec:deploy', 'exec:announce']);
 };

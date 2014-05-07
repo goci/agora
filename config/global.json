@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "_default": {
+            "link": "agora-dev"
+        },
+        "agora-dev": {
+            "applicationId": "YWhdPoGpUZRYIa5UjIfg8sRuPXCe5VjyvPznCkkm",
+            "masterKey": "U6BK4OcsnrFOTFPg7VlR5SPllIILqMVAlW8S3Zgz"
+        }
+    }
+}

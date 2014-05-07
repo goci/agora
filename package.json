@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/agora-brasil/agora",
   "devDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "grunt-contrib-concat": "^0.4.0"
   }
 }

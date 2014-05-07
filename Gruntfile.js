@@ -22,7 +22,7 @@ module.exports = function (grunt) {
           separator: ';',
         },
         files: {
-          'public/assets/vendor.js': ['lib/assets/vendor/js/*.js', 'lib/assets/vendor/**/*.js'],
+          'public/assets/vendor.js': ['lib/assets/vendor/js/foundation/vendor/jquery.js', 'lib/assets/vendor/**/*.js'],
           'public/assets/lib.js': ['lib/assets/js/**/*.js']
         }
       }

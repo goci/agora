@@ -83,6 +83,12 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'karma.conf.js'
       }
+    },
+
+    exec: {
+      deploy: {
+        command: 'parse deploy'
+      }
     }
   });
 
@@ -90,8 +96,12 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-exec');
 
   grunt.registerTask('default', ['concat']);
+
   grunt.registerTask('test_functional', ['protractor:test']);
   grunt.registerTask('test_unit', ['karma']);
+
+  grunt.registerTask('deploy', ['concat', 'exec:deploy']);
 };

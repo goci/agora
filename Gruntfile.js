@@ -16,15 +16,6 @@ module.exports = function (grunt) {
           'public/assets/vendor.css': ['lib/assets/vendor/css/**/*.css'],
           'public/assets/lib.css': ['lib/assets/css/**/*.css']
         }
-      },
-      js: {
-        options: {
-          separator: ';',
-        },
-        files: {
-          'public/assets/vendor.js': ['lib/assets/vendor/js/foundation/vendor/jquery.js', 'lib/assets/vendor/**/*.js'],
-          'public/assets/lib.js': ['lib/assets/js/**/*.js']
-        }
       }
     },
 
@@ -50,9 +41,16 @@ module.exports = function (grunt) {
           nospawn: true
         }
       },
-      javascripts: {
-        files: ['lib/assets/**/*.js'],
-        tasks: ['concat:js'],
+      lib_javascripts: {
+        files: ['lib/assets/js/**/*.js'],
+        tasks: ['uglify:lib_javascripts'],
+        options: {
+          nospawn: true
+        }
+      },
+      vendor_javascripts: {
+        files: ['lib/assets/vendor/**/*.js'],
+        tasks: ['uglify:vendor_javascripts'],
         options: {
           nospawn: true
         }
@@ -62,6 +60,24 @@ module.exports = function (grunt) {
         tasks: ['concat:dist'],
         options: {
           nospawn: true
+        }
+      }
+    },
+
+    uglify: {
+      options: {
+        mangle: false
+      },
+
+      vendor_javascripts: {
+        files: {
+          'public/assets/vendor.js': ['lib/assets/vendor/js/foundation/vendor/jquery.js', 'lib/assets/vendor/**/*.js'],
+        }
+      },
+
+      lib_javascripts: {
+        files: {
+          'public/assets/lib.js': ['lib/assets/js/**/*.js']
         }
       }
     },
@@ -106,11 +122,12 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-exec');
 
-  grunt.registerTask('default', ['concat']);
+  grunt.registerTask('default', ['concat', 'uglify']);
 
   grunt.registerTask('test_functional', ['protractor:test']);
   grunt.registerTask('test_unit', ['karma:unit']);

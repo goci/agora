@@ -56,12 +56,34 @@ module.exports = function (grunt) {
         options: {
           nospawn: true
         }
+      },
+      html: {
+        files: ['lib/html/**/*.html'],
+        tasks: ['concat:dist'],
+        options: {
+          nospawn: true
+        }
+      }
+    },
+
+    protractor: {
+      options: {
+        configFile: "node_modules/grunt-protractor-runner/node_modules/protractor/referenceConf.js",
+        keepAlive: true,
+        noColor: false,
+      },
+      test: {
+        options: {
+          configFile: "e2e.conf.js",
+        }
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-protractor-runner');
 
   grunt.registerTask('default', ['concat']);
+  grunt.registerTask('test_functional', ['protractor:test']);
 };

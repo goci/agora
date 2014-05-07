@@ -3,9 +3,10 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     concat: {
-      dist: {
-        src: ['lib/html/index.html'],
-        dest: 'public/index.html'
+      html: {
+        files: {
+          'public/index.html': ['lib/html/index.html']
+        },
       },
       css: {
         options: {
@@ -21,16 +22,30 @@ module.exports = function (grunt) {
           separator: ';',
         },
         files: {
-          'public/assets/vendor.js': ['lib/assets/vendor/js/**/*.js'],
+          'public/assets/vendor.js': ['lib/assets/vendor/js/*.js', 'lib/assets/vendor/**/*.js'],
           'public/assets/lib.js': ['lib/assets/js/**/*.js']
         }
       }
     },
 
     watch: {
+      gruntfile: {
+        files: ['Gruntfile.js'],
+        tasks: ['concat'],
+        options: {
+          nospawn: true
+        }
+      },
+      html: {
+        files: ['lib/html/**/*.html'],
+        tasks: ['concat:html'],
+        options: {
+          nospawn: true
+        }
+      },
       styles: {
         files: ['lib/assets/css/**/*.css'],
-        tasks: ['less', 'concat:css'],
+        tasks: ['concat:css'],
         options: {
           nospawn: true
         }

@@ -9,10 +9,11 @@ module.exports = function (grunt) {
       js: {
         options: {
           separator: ';',
-        },                                     
-        files: {                                
-          'public/assets/vendor.js': ['lib/assets/vendor/js/**/*.js']
-        }                                      
+        },
+        files: {
+          'public/assets/vendor.js': ['lib/assets/vendor/js/**/*.js'],
+          'public/assets/lib.js': ['lib/assets/js/**/*.js']
+        }
       }
     }
   });

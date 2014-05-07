@@ -1,11 +1,14 @@
 {
     "applications": {
         "_default": {
-            "link": "agora-dev"
+            "link": "agora"
         },
-        "agora-dev": {
+        "agora": {
             "applicationId": "Z90c5luljMj8vZLRd2FD8gKVftaFbcNNLsgVPRkz",
             "masterKey": "zafmHExmNRLSwuuiqENyolc8epKB2HRWreVqTT21"
         }
+    },
+    "global": {
+        "parseVersion": "1.2.18"
     }
 }

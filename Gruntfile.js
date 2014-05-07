@@ -85,7 +85,15 @@ module.exports = function (grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js',
-        singleRun: true
+        singleRun: true,
+        browser: ['chrome'],
+        capabilities: {
+          browserName: 'chrome',
+            chromeOptions: {
+            binary: '/opt/google/chrome',
+            args: ['no-sandbox']
+          }
+        }
       }
     },
 

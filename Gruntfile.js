@@ -77,13 +77,21 @@ module.exports = function (grunt) {
           configFile: "e2e.conf.js",
         }
       }
+    },
+
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
     }
   });
 
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-protractor-runner');
 
   grunt.registerTask('default', ['concat']);
   grunt.registerTask('test_functional', ['protractor:test']);
+  grunt.registerTask('test_unit', ['karma']);
 };

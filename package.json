@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/agora-brasil/agora/issues"
   },
-  "homepage": "https://github.com/agora-brasil/agora"
+  "homepage": "https://github.com/agora-brasil/agora",
+  "devDependencies": {
+    "grunt": "~0.4.2"
+  }
 }

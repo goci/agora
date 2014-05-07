@@ -71,6 +71,9 @@ module.exports = function (grunt) {
         configFile: "node_modules/grunt-protractor-runner/node_modules/protractor/referenceConf.js",
         keepAlive: true,
         noColor: false,
+        args: {
+          params: ['no-sandbox']
+        }
       },
       test: {
         options: {
@@ -81,7 +84,8 @@ module.exports = function (grunt) {
 
     karma: {
       unit: {
-        configFile: 'karma.conf.js'
+        configFile: 'karma.conf.js',
+        singleRun: true
       }
     },
 
@@ -101,7 +105,7 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['concat']);
 
   grunt.registerTask('test_functional', ['protractor:test']);
-  grunt.registerTask('test_unit', ['karma']);
+  grunt.registerTask('test_unit', ['karma:unit']);
 
   grunt.registerTask('deploy', ['concat', 'exec:deploy']);
 };

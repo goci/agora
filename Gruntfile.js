@@ -126,5 +126,5 @@ module.exports = function (grunt) {
   grunt.registerTask('test_functional', ['protractor:test']);
   grunt.registerTask('test_unit', ['karma:unit']);
 
-  grunt.registerTask('deploy', ['concat', 'exec:deploy']);
+  grunt.registerTask('deploy', ['default', 'exec:deploy']);
 };

@@ -120,17 +120,12 @@ module.exports = function (grunt) {
 
     protractor: {
       options: {
-        configFile: "node_modules/grunt-protractor-runner/test/testConf.js",
         keepAlive: true,
         noColor: false
       },
       test: {
         options: {
-          configFile: "e2e.conf.js",
-          args: {
-            chromeOnly: true,
-            chromeDriver: '/usr/local/bin/chromedriver'
-          }
+          configFile: 'e2e.conf.js'
         }
       }
     },

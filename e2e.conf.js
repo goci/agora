@@ -1,4 +1,11 @@
 exports.config = {
-  seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['spec/functional/*_spec.js']
+  specs: ['spec/functional/*_spec.js'],
+  chromeOnly: true,
+  chromeDriver: '/usr/local/bin/chromedriver',
+  capabilities: {
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['no-sandbox']
+    }
+  }
 };

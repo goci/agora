@@ -128,7 +128,8 @@ module.exports = function (grunt) {
         options: {
           configFile: "e2e.conf.js",
           args: {
-            browser: '<%= isRunningOnSnap == "true" ? "firefox" : "chrome" %>'
+            chromeOnly: true,
+            chromeDriver: '/usr/local/bin/chromedriver'
           }
         }
       }

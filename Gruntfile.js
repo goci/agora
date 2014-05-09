@@ -2,7 +2,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    isRunningOnSnap: process.env.SNAP_CI == 'true',
+    isRunningOnSnap: process.env.SNAP_CI,
 
     env: 'development',
 
@@ -127,6 +127,9 @@ module.exports = function (grunt) {
       test: {
         options: {
           configFile: "e2e.conf.js",
+          args: {
+            browser: '<%= isRunningOnSnap == "true" ? "firefox" : "chrome" %>'
+          }
         }
       }
     },

@@ -8,14 +8,14 @@ module.exports = function (grunt) {
 
     sites: {
       'development': 'https://dev.deliberare.com.br',
-      'production': 'https://deliberare.com.br',
-      'tests': 'https://tests.deliberare.com.br'
+      'tests':       'https://tests.deliberare.com.br',
+      'staging':     'https://staging.deliberare.com.br'
     },
 
     apps: {
       'development': 'agora_development',
-      'production': 'agora',
-      'tests': 'agora_tests'
+      'tests':       'agora_tests',
+      'staging':     'agora_staging'
     },
 
     concat: {
@@ -104,7 +104,10 @@ module.exports = function (grunt) {
 
       vendor_javascripts: {
         files: {
-          'public/assets/vendor.js': ['lib/assets/vendor/js/foundation/vendor/jquery.js', 'lib/assets/vendor/**/*.js'],
+          'public/assets/vendor.js': [
+            'lib/assets/vendor/js/foundation/vendor/jquery.js',
+            'lib/assets/vendor/**/*.js'
+          ],
         }
       },
 
@@ -160,22 +163,21 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-exec');
 
-
   grunt.registerTask('default', ['concat']);
 
   grunt.registerTask('test_unit', ['tests_environment', 'default', 'karma:unit']);
   grunt.registerTask('test_functional', ['tests_environment', 'default', 'protractor:test']);
 
   grunt.registerTask('tests_environment', 'Set tests environment', setTestsEnvironment);
-  grunt.registerTask('production_environment', 'Set production environment', setProductionEnvironment);
+  grunt.registerTask('staging_environment', 'Set staging environment', setStagingEnvironment);
 
   grunt.registerTask('deploy_to_development', ['default', 'exec:deploy', 'exec:announce']);
-  grunt.registerTask('deploy_to_production', ['production_environment', 'default', 'uglify', 'exec:deploy', 'exec:announce']);
+  grunt.registerTask('deploy_to_staging', ['staging_environment', 'default', 'uglify', 'exec:deploy', 'exec:announce']);
   grunt.registerTask('deploy_to_tests', ['tests_environment', 'default', 'exec:deploy', 'exec:announce']);
 
 
-  function setProductionEnvironment() {
-    grunt.config.set('env', 'production');
+  function setStagingEnvironment() {
+    grunt.config.set('env', 'staging');
   }
 
   function setTestsEnvironment() {

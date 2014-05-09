@@ -35,6 +35,18 @@ module.exports = function (grunt) {
           'public/assets/vendor.css': ['lib/assets/vendor/css/**/*.css'],
           'public/assets/lib.css': ['lib/assets/css/**/*.css']
         }
+      },
+      js: {
+        options: {
+          separator: '\n;'
+        },
+        files: {
+          'public/assets/vendor.js': [
+            'lib/assets/vendor/js/foundation/vendor/jquery.js',
+            'lib/assets/vendor/**/*.js'
+          ],
+          'public/assets/lib.js': ['lib/assets/js/**/*.js']
+        }
       }
     },
 

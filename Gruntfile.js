@@ -2,6 +2,8 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    isRunningOnSnap: process.env.SNAP_CI == 'true',
+
     env: 'development',
 
     sites: {
@@ -115,13 +117,9 @@ module.exports = function (grunt) {
 
     protractor: {
       options: {
-        configFile: "node_modules/grunt-protractor-runner/node_modules/protractor/referenceConf.js",
+        configFile: "node_modules/grunt-protractor-runner/test/testConf.js",
         keepAlive: true,
-        noColor: false,
-        chromeDriver: '/opt/google/chrome',
-        args: {
-          params: ['no-sandbox']
-        }
+        noColor: false
       },
       test: {
         options: {

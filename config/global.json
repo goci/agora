@@ -6,6 +6,14 @@
         "agora": {
             "applicationId": "Z90c5luljMj8vZLRd2FD8gKVftaFbcNNLsgVPRkz",
             "masterKey": "zafmHExmNRLSwuuiqENyolc8epKB2HRWreVqTT21"
+        },
+        "agora_development": {
+            "applicationId": "sKmm6vOfVdAuU1CXXrqLrJ2s0UBRP1F7RS4taeL4",
+            "masterKey": "KOqs6DiFqfeUMNhGXcBv7dhbXiVxluvejAiKrnfl"
+        },
+        "agora_tests": {
+            "applicationId": "96Y0zacuOllgK1ZHmzt3oF7d5tM5SVYEMCffZqT2",
+            "masterKey": "4qEjIA5AGMbWjcwVHD9JVR7ABrB3CmhLfeGihIji"
         }
     },
     "global": {

@@ -2,7 +2,26 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    env: 'development',
+
+    sites: {
+      'development': 'https://dev.deliberare.com.br',
+      'production': 'https://deliberare.com.br',
+      'tests': 'https://tests.deliberare.com.br'
+    },
+
+    apps: {
+      'development': 'agora_development',
+      'production': 'agora',
+      'tests': 'agora_tests'
+    },
+
     concat: {
+      config: {
+        files: {
+          'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js']
+        }
+      },
       html: {
         files: {
           'public/index.html': ['lib/html/index.html']
@@ -109,10 +128,17 @@ module.exports = function (grunt) {
 
     exec: {
       deploy: {
-        command: 'parse deploy'
+        command: "parse deploy <%= apps[env] %>"
       },
       announce: {
-        command: 'curl -s -X POST --data-urlencode payload=' + JSON.stringify('{"channel": "#general", "icon_emoji": ":monkey_face:", "username": "deploy", "text": "New version deployed to <https://dev.deliberare.com.br|the dev environment> by `git config user.name`."}') + ' https://deliberare.slack.com/services/hooks/incoming-webhook?token=00AslaqafRD6hlO2YcGEpm4v'
+        command: function() {
+          var env     = this.config.get('env'),
+              sites   = this.config.get('sites'),
+              msg     = "New version deployed to <" + sites[env] + "|the " + env + " environment> by `git config user.name`.",
+              payload = JSON.stringify('{"channel": "#general", "icon_emoji": ":monkey_face:", "username": "deploy", "text": "' + msg + '"}');
+
+          return 'curl -s -X POST --data-urlencode payload=' + payload + ' https://deliberare.slack.com/services/hooks/incoming-webhook?token=00AslaqafRD6hlO2YcGEpm4v'
+        }
       }
     }
   });
@@ -124,10 +150,25 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-exec');
 
-  grunt.registerTask('default', ['concat', 'uglify']);
 
-  grunt.registerTask('test_functional', ['protractor:test']);
-  grunt.registerTask('test_unit', ['karma:unit']);
+  grunt.registerTask('default', ['concat']);
 
-  grunt.registerTask('deploy', ['default', 'exec:deploy', 'exec:announce']);
+  grunt.registerTask('test_unit', ['tests_environment', 'default', 'karma:unit']);
+  grunt.registerTask('test_functional', ['tests_environment', 'default', 'protractor:test']);
+
+  grunt.registerTask('tests_environment', 'Set tests environment', setTestsEnvironment);
+  grunt.registerTask('production_environment', 'Set production environment', setProductionEnvironment);
+
+  grunt.registerTask('deploy_to_development', ['default', 'exec:deploy', 'exec:announce']);
+  grunt.registerTask('deploy_to_production', ['production_environment', 'default', 'uglify', 'exec:deploy', 'exec:announce']);
+  grunt.registerTask('deploy_to_tests', ['tests_environment', 'default', 'exec:deploy', 'exec:announce']);
+
+
+  function setProductionEnvironment() {
+    grunt.config.set('env', 'production');
+  }
+
+  function setTestsEnvironment() {
+    grunt.config.set('env', 'tests');
+  }
 };

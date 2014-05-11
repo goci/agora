@@ -41,9 +41,14 @@ module.exports = function (grunt) {
           'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
           'public/assets/vendor.js': [
             'lib/assets/vendor/js/foundation/vendor/jquery.js',
-            'lib/assets/vendor/**/*.js'
+            'lib/assets/vendor/js/foundation/foundation/foundation.js',
+            'lib/assets/vendor/js/foundation/**/*.js',
+            'lib/assets/vendor/js/**/*.js'
           ],
-          'public/assets/lib.js': ['lib/assets/js/app/**/*.js', 'lib/assets/js/initializers/*.js']
+          'public/assets/lib.js': [
+            'lib/assets/js/app/**/*.js',
+            'lib/assets/js/initializers/*.js'
+          ]
         }
       }
     },

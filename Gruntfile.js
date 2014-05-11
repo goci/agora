@@ -19,11 +19,6 @@ module.exports = function (grunt) {
     },
 
     concat: {
-      config: {
-        files: {
-          'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js']
-        }
-      },
       html: {
         files: {
           'public/index.html': ['lib/html/index.html']
@@ -43,11 +38,12 @@ module.exports = function (grunt) {
           separator: '\n;'
         },
         files: {
+          'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
           'public/assets/vendor.js': [
             'lib/assets/vendor/js/foundation/vendor/jquery.js',
             'lib/assets/vendor/**/*.js'
           ],
-          'public/assets/lib.js': ['lib/assets/js/**/*.js']
+          'public/assets/lib.js': ['lib/assets/js/app/**/*.js', 'lib/assets/js/initializers/*.js']
         }
       }
     },

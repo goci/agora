@@ -3,7 +3,7 @@
         "_default": {
             "link": "agora"
         },
-        "agora": {
+        "agora_staging": {
             "applicationId": "Z90c5luljMj8vZLRd2FD8gKVftaFbcNNLsgVPRkz",
             "masterKey": "zafmHExmNRLSwuuiqENyolc8epKB2HRWreVqTT21"
         },

@@ -49,47 +49,32 @@ module.exports = function (grunt) {
     },
 
     watch: {
+      options: {
+        spawn: false
+      },
       gruntfile: {
         files: ['Gruntfile.js'],
-        tasks: ['concat'],
-        options: {
-          nospawn: true
-        }
+        tasks: ['concat']
       },
       html: {
         files: ['lib/html/**/*.html'],
-        tasks: ['concat:html'],
-        options: {
-          nospawn: true
-        }
+        tasks: ['concat:html']
       },
       styles: {
         files: ['lib/assets/css/**/*.css'],
-        tasks: ['concat:css'],
-        options: {
-          nospawn: true
-        }
+        tasks: ['concat:css']
       },
       lib_javascripts: {
         files: ['lib/assets/js/**/*.js'],
-        tasks: ['uglify:lib_javascripts'],
-        options: {
-          nospawn: true
-        }
+        tasks: ['uglify:lib_javascripts']
       },
       vendor_javascripts: {
         files: ['lib/assets/vendor/**/*.js'],
-        tasks: ['uglify:vendor_javascripts'],
-        options: {
-          nospawn: true
-        }
+        tasks: ['uglify:vendor_javascripts']
       },
       html: {
         files: ['lib/html/**/*.html'],
-        tasks: ['concat:dist'],
-        options: {
-          nospawn: true
-        }
+        tasks: ['concat:dist']
       }
     },
 

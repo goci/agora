@@ -37,9 +37,8 @@ module.exports = function (grunt) {
         files: {
           'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
           'public/assets/vendor.js': [
-            'lib/assets/vendor/js/foundation/vendor/jquery.js',
-            'lib/assets/vendor/js/foundation/foundation/foundation.js',
-            'lib/assets/vendor/js/foundation/**/*.js',
+            'lib/assets/vendor/bower/jquery/dist/jquery.js',
+            'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
             'lib/assets/vendor/js/**/*.js'
           ],
           'public/assets/lib.js': [

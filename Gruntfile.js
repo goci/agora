@@ -18,20 +18,17 @@ module.exports = function (grunt) {
       'staging':     'agora_staging'
     },
 
+    bower: {
+      install: {
+        options: {}
+      }
+    },
+
     concat: {
       html: {
         files: {
           'public/index.html': ['lib/html/index.html']
         },
-      },
-      css: {
-        options: {
-          separator: ';',
-        },
-        files: {
-          'public/assets/vendor.css': ['lib/assets/vendor/css/**/*.css'],
-          'public/assets/lib.css': ['lib/assets/css/**/*.css']
-        }
       },
       js: {
         options: {
@@ -49,6 +46,18 @@ module.exports = function (grunt) {
             'lib/assets/js/app/**/*.js',
             'lib/assets/js/initializers/*.js'
           ]
+        }
+      }
+    },
+
+    sass: {
+      options: {
+        includePaths: ['lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap']
+      },
+      dist: {
+        files: {
+          'public/assets/vendor.css': ['lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap.scss'],
+          'public/assets/app.css': ['lib/assets/css/**/*.scss', 'lib/assets/css/**/*.sass']
         }
       }
     },
@@ -91,7 +100,6 @@ module.exports = function (grunt) {
       vendor_javascripts: {
         files: {
           'public/assets/vendor.js': [
-            'lib/assets/vendor/js/foundation/vendor/jquery.js',
             'lib/assets/vendor/**/*.js'
           ],
         }
@@ -139,14 +147,17 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-exec');
 
-  grunt.registerTask('default', ['concat']);
+  grunt.registerTask('build', ['bower:install', 'sass', 'concat']);
+  grunt.registerTask('default', ['build']);
 
   grunt.registerTask('test_unit', ['tests_environment', 'default', 'karma:unit']);
   grunt.registerTask('test_functional', ['tests_environment', 'default', 'protractor:test']);

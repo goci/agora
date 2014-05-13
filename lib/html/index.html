@@ -28,13 +28,19 @@
         <div class="collapse navbar-collapse" id="nav-bar-menu">
           <ul class="nav navbar-nav">
             <li class="active">
-              <a href="/">Principal</a>
+              <a href="/">
+                <i class="fa fa-home"></i>
+                Principal
+              </a>
             </li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right user-area">
             <li ng-show="!user">
-              <a href="javascript:;" ng-click="facebookLogin()">Entrar</a>
+              <a href="javascript:;" ng-click="facebookLogin()">
+                <i class="fa fa-sign-in"></i>
+                Entrar
+              </a>
             </li>
 
             <li ng-show="user">

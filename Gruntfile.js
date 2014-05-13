@@ -35,7 +35,8 @@ module.exports = function (grunt) {
     concat: {
       html: {
         files: {
-          'public/index.html': ['lib/html/index.html']
+          'public/index.html': ['lib/html/index.html'],
+          'public/user/index.html': ['lib/html/user/index.html']
         },
       }
     },
@@ -54,7 +55,7 @@ module.exports = function (grunt) {
 
     watch: {
       options: {
-        spawn: false
+        nospawn: true
       },
       gruntfile: {
         files: ['Gruntfile.js', 'bower.json'],
@@ -69,8 +70,8 @@ module.exports = function (grunt) {
         tasks: ['sass']
       },
       js: {
-        files: ['lib/**/*.js', '!lib/assets/js/vendor/js/*.js'],
-        tasks: ['concat:js']
+        files: ['lib/**/*.js', '!lib/assets/js/vendor/js/*.js', 'config/routes.js'],
+        tasks: ['uglify:js']
       }
     },
 
@@ -88,6 +89,8 @@ module.exports = function (grunt) {
           'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
           'public/assets/vendor.js': [
             'lib/assets/vendor/bower/jquery/dist/jquery.js',
+            'lib/assets/vendor/bower/angular/angular.js',
+            'lib/assets/vendor/bower/angular-ui-router/release/angular-ui-router.js',
             'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
             'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js',
             'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/**/*js',
@@ -96,7 +99,8 @@ module.exports = function (grunt) {
           'public/assets/lib.js': [
             'lib/assets/js/app/**/*.js',
             'lib/assets/js/initializers/*.js',
-            'lib/init_modules.js'
+            'lib/init_modules.js',
+            'config/routes.js'
           ],
           'public/assets/helpers.js': ['lib/helpers/*.js']
         }

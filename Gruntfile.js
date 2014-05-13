@@ -29,25 +29,6 @@ module.exports = function (grunt) {
         files: {
           'public/index.html': ['lib/html/index.html']
         },
-      },
-      js: {
-        options: {
-          separator: '\n;'
-        },
-        files: {
-          'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
-          'public/assets/vendor.js': [
-            'lib/assets/vendor/bower/jquery/dist/jquery.js',
-            'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
-            'lib/assets/vendor/js/**/*.js'
-          ],
-          'public/assets/lib.js': [
-            'lib/assets/js/app/**/*.js',
-            'lib/assets/js/initializers/*.js',
-            'lib/init_modules.js'
-          ],
-          'public/assets/helpers.js': ['lib/helpers/*.js']
-        }
       }
     },
 
@@ -87,20 +68,27 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
-        mangle: false
+        mangle: false,
+        compress: false,
+        beautify: true
       },
-
-      vendor_javascripts: {
+      js: {
+        options: {
+          separator: '\n;'
+        },
         files: {
+          'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
           'public/assets/vendor.js': [
-            'lib/assets/vendor/**/*.js'
+            'lib/assets/vendor/bower/jquery/dist/jquery.js',
+            'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
+            'lib/assets/vendor/js/**/*.js'
           ],
-        }
-      },
-
-      lib_javascripts: {
-        files: {
-          'public/assets/lib.js': ['lib/assets/js/**/*.js']
+          'public/assets/lib.js': [
+            'lib/assets/js/app/**/*.js',
+            'lib/assets/js/initializers/*.js',
+            'lib/init_modules.js'
+          ],
+          'public/assets/helpers.js': ['lib/helpers/*.js']
         }
       }
     },
@@ -149,7 +137,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-exec');
 
-  grunt.registerTask('build', ['bower:install', 'sass', 'concat']);
+  grunt.registerTask('build', ['bower:install', 'sass', 'concat', 'uglify']);
   grunt.registerTask('default', ['build']);
 
   grunt.registerTask('test_unit', ['tests_environment', 'build', 'karma:unit']);
@@ -159,7 +147,7 @@ module.exports = function (grunt) {
   grunt.registerTask('staging_environment', 'Set staging environment', setStagingEnvironment);
 
   grunt.registerTask('deploy_to_development', ['build', 'exec:deploy', 'exec:announce']);
-  grunt.registerTask('deploy_to_staging', ['staging_environment', 'build', 'uglify', 'exec:deploy', 'exec:announce']);
+  grunt.registerTask('deploy_to_staging', ['staging_environment', 'build', 'exec:deploy', 'exec:announce']);
   grunt.registerTask('deploy_to_tests', ['tests_environment', 'build', 'exec:deploy', 'exec:announce']);
 
   grunt.registerTask('ci', ['tests_environment', 'build', 'test_unit', 'exec:deploy', 'exec:announce', 'test_functional']);

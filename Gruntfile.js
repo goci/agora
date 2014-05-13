@@ -159,15 +159,15 @@ module.exports = function (grunt) {
   grunt.registerTask('build', ['bower:install', 'sass', 'concat']);
   grunt.registerTask('default', ['build']);
 
-  grunt.registerTask('test_unit', ['tests_environment', 'default', 'karma:unit']);
-  grunt.registerTask('test_functional', ['tests_environment', 'default', 'protractor:test']);
+  grunt.registerTask('test_unit', ['tests_environment', 'build', 'karma:unit']);
+  grunt.registerTask('test_functional', ['tests_environment', 'build', 'protractor:test']);
 
   grunt.registerTask('tests_environment', 'Set tests environment', setTestsEnvironment);
   grunt.registerTask('staging_environment', 'Set staging environment', setStagingEnvironment);
 
-  grunt.registerTask('deploy_to_development', ['default', 'exec:deploy', 'exec:announce']);
-  grunt.registerTask('deploy_to_staging', ['staging_environment', 'default', 'uglify', 'exec:deploy', 'exec:announce']);
-  grunt.registerTask('deploy_to_tests', ['tests_environment', 'default', 'exec:deploy', 'exec:announce']);
+  grunt.registerTask('deploy_to_development', ['build', 'exec:deploy', 'exec:announce']);
+  grunt.registerTask('deploy_to_staging', ['staging_environment', 'build', 'uglify', 'exec:deploy', 'exec:announce']);
+  grunt.registerTask('deploy_to_tests', ['tests_environment', 'build', 'exec:deploy', 'exec:announce']);
 
 
   function setStagingEnvironment() {

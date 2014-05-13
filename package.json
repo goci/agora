@@ -21,9 +21,6 @@
     "url": "https://github.com/agora-brasil/agora/issues"
   },
   "homepage": "https://github.com/agora-brasil/agora",
-  "dependencies": {
-    "express": "^4.2.0"
-  },
   "devDependencies": {
     "express": "^4.2.0",
     "grunt": "^0.4.4",

@@ -42,11 +42,11 @@ module.exports = function (grunt) {
 
     sass: {
       options: {
-        includePaths: ['lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap']
+        includePaths: ['lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap', 'lib/assets/vendor/bower/fontawesome/scss']
       },
       dist: {
         files: {
-          'public/assets/vendor.css': ['lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap.scss'],
+          'public/assets/vendor.css': ['lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap.scss', 'lib/assets/vendor/bower/fontawesome/scss/font-awesome.scss'],
           'public/assets/app.css': ['lib/assets/css/**/*.scss']
         }
       }
@@ -57,7 +57,7 @@ module.exports = function (grunt) {
         spawn: false
       },
       gruntfile: {
-        files: ['Gruntfile.js'],
+        files: ['Gruntfile.js', 'bower.json'],
         tasks: ['concat']
       },
       html: {

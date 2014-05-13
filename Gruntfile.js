@@ -43,8 +43,10 @@ module.exports = function (grunt) {
           ],
           'public/assets/lib.js': [
             'lib/assets/js/app/**/*.js',
-            'lib/assets/js/initializers/*.js'
-          ]
+            'lib/assets/js/initializers/*.js',
+            'lib/init_modules.js'
+          ],
+          'public/assets/helpers.js': ['lib/helpers/*.js']
         }
       }
     },
@@ -56,7 +58,7 @@ module.exports = function (grunt) {
       dist: {
         files: {
           'public/assets/vendor.css': ['lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap.scss'],
-          'public/assets/app.css': ['lib/assets/css/**/*.scss', 'lib/assets/css/**/*.sass']
+          'public/assets/app.css': ['lib/assets/css/**/*.scss']
         }
       }
     },
@@ -75,19 +77,11 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['lib/assets/css/**/*.css'],
-        tasks: ['concat:css']
+        tasks: ['sass']
       },
-      lib_javascripts: {
-        files: ['lib/assets/js/**/*.js'],
-        tasks: ['uglify:lib_javascripts']
-      },
-      vendor_javascripts: {
-        files: ['lib/assets/vendor/**/*.js'],
-        tasks: ['uglify:vendor_javascripts']
-      },
-      html: {
-        files: ['lib/html/**/*.html'],
-        tasks: ['concat:dist']
+      js: {
+        files: ['lib/**/*.js', '!lib/assets/js/vendor/js/*.js'],
+        tasks: ['concat:js']
       }
     },
 

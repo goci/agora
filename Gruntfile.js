@@ -27,7 +27,8 @@ module.exports = function (grunt) {
     copy: {
       fonts: {
         files: [
-          { expand: true, cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap', src: ['*'], dest: 'public/assets/bootstrap/', filter: 'isFile' }
+          { expand: true, cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap', src: ['*'], dest: 'public/assets/bootstrap/', filter: 'isFile' },
+          { expand: true, cwd: 'lib/assets/vendor/bower/fontawesome/fonts', src: ['*'], dest: 'public/assets/fonts/fontawesome', filter: 'isFile' }
         ]
       }
     },
@@ -43,12 +44,16 @@ module.exports = function (grunt) {
 
     sass: {
       options: {
-        includePaths: ['lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap', 'lib/assets/vendor/bower/fontawesome/scss']
+        includePaths: [
+          'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap',
+          'lib/assets/vendor/bower/fontawesome/scss',
+          'lib/assets/css'
+        ]
       },
       dist: {
         files: {
-          'public/assets/vendor.css': ['lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap.scss', 'lib/assets/vendor/bower/fontawesome/scss/font-awesome.scss'],
-          'public/assets/app.css': ['lib/assets/css/**/*.scss']
+          'public/assets/vendor.css': ['lib/assets/css/vendor-imports.scss'],
+          'public/assets/app.css': ['lib/assets/css/app.scss']
         }
       }
     },
@@ -66,7 +71,7 @@ module.exports = function (grunt) {
         tasks: ['concat:html']
       },
       styles: {
-        files: ['lib/assets/css/**/*.css'],
+        files: ['lib/assets/css/**/*.scss'],
         tasks: ['sass']
       },
       js: {

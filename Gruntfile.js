@@ -27,7 +27,7 @@ module.exports = function (grunt) {
     copy: {
       fonts: {
         files: [
-          { expand: true, cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap', src: ['*'], dest: 'public/assets/fonts/', filter: 'isFile' }
+          { expand: true, cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap', src: ['*'], dest: 'public/assets/bootstrap/', filter: 'isFile' }
         ]
       }
     },

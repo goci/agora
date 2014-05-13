@@ -24,6 +24,14 @@ module.exports = function (grunt) {
       }
     },
 
+    copy: {
+      fonts: {
+        files: [
+          { expand: true, cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap', src: ['*'], dest: 'public/assets/fonts/', filter: 'isFile' }
+        ]
+      }
+    },
+
     concat: {
       html: {
         files: {
@@ -130,6 +138,7 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -139,7 +148,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-exec');
 
-  grunt.registerTask('build', ['bower:install', 'sass', 'concat', 'uglify']);
+  grunt.registerTask('build', ['bower:install', 'sass', 'concat', 'uglify', 'copy:fonts']);
   grunt.registerTask('default', ['build']);
 
   grunt.registerTask('test_unit', ['tests_environment', 'build', 'karma:unit']);

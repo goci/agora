@@ -142,9 +142,10 @@ module.exports = function (grunt) {
           indent: 2,
           white: true,
           nomen: true,
+          unparam: true,
           predef: [
             '_',
-            'describe', 'it', 'browser', 'expect', 'beforeEach', // karma and jasmine
+            'describe', 'it', 'browser', 'expect', 'beforeEach', 'spyOn', 'xit', 'jasmine', // karma and jasmine
             'inject', // angular
             'element', 'by' // webdriver
           ]

@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Home', function() {
   it('shows link for user to login', function() {
     browser.get('http://tests.deliberare.com.br/');

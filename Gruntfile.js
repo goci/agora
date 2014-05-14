@@ -115,6 +115,46 @@ module.exports = function (grunt) {
       }
     },
 
+    jslint: {
+
+      production: {
+        directives: {
+          browser: true,
+          indent: 2,
+          white: true,
+          nomen: true,
+          predef: [
+            'angular',
+            '_'
+          ]
+        },
+
+        src: [
+          'lib/assets/js/**/*.js',
+          'lib/helpers/**/*.js',
+          'lib/models/**/*.js'
+        ],
+      },
+
+      test: {
+        directives: {
+          node: true,
+          indent: 2,
+          white: true,
+          nomen: true,
+          predef: [
+            '_',
+            'describe', 'it', 'browser', 'expect', // karma, jasmine
+            'element', 'by' // webdriver
+          ]
+        },
+
+        src: [
+          'spec/**/*.js',
+        ],
+      }
+    },
+
     protractor: {
       options: {
         keepAlive: true,
@@ -160,8 +200,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-exec');
+  grunt.loadNpmTasks('grunt-jslint');
 
-  grunt.registerTask('build', ['bower:install', 'sass', 'concat', 'uglify', 'copy:fonts']);
+  grunt.registerTask('jslint:all', ['jslint:production', 'jslint:test']);
+  grunt.registerTask('build', ['bower:install', 'jslint:all', 'sass', 'concat', 'uglify', 'copy:fonts']);
   grunt.registerTask('default', ['build']);
 
   grunt.registerTask('test_unit', ['tests_environment', 'build', 'karma:unit']);

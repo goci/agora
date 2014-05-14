@@ -108,7 +108,8 @@ module.exports = function (grunt) {
             'lib/init_modules.js',
             'config/routes.js'
           ],
-          'public/assets/helpers.js': ['lib/helpers/*.js']
+          'public/assets/helpers.js': ['lib/helpers/*.js'],
+          'public/assets/models.js': ['lib/models/*.js']
         }
       }
     },

@@ -11,6 +11,7 @@
     <script type="text/javascript" src="assets/vendor.js"></script>
     <script type="text/javascript" src="assets/lib.js"></script>
     <script type="text/javascript" src="assets/helpers.js"></script>
+    <script type="text/javascript" src="assets/models.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -46,6 +47,7 @@
             <li ng-show="user">
               <a href="javascript:;">
                 <i class="glyphicon glyphicon-user"></i>
+                <img ng-src="{{ user.facebookPictureUrl() }}" />
                 Olá, {{ user.get('first_name') }}
               </a>
             </li>

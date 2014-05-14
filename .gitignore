@@ -2,3 +2,4 @@ node_modules
 public
 npm-debug.log
 lib/assets/vendor/bower
+.deploy_output

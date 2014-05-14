@@ -144,7 +144,7 @@ module.exports = function (grunt) {
           nomen: true,
           predef: [
             '_',
-            'describe', 'it', 'browser', 'expect', // karma, jasmine
+            'describe', 'it', 'browser', 'expect', 'beforeEach', 'inject', // karma, jasmine
             'element', 'by' // webdriver
           ]
         },

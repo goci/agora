@@ -46,9 +46,8 @@
 
             <li ng-show="user">
               <a href="javascript:;">
-                <i class="glyphicon glyphicon-user"></i>
-                <img ng-src="{{ user.facebookPictureUrl() }}" />
                 Olá, {{ user.get('first_name') }}
+                <img class="avatar" ng-src="{{ user.facebookPictureUrl() }}" />
               </a>
             </li>
 

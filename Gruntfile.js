@@ -135,16 +135,17 @@ module.exports = function (grunt) {
 
     exec: {
       deploy: {
-        command: "parse deploy <%= apps[env] %>"
+        command: "parse deploy <%= apps[env] %> > .deploy_output"
       },
       announce: {
         command: function() {
           var env     = this.config.get('env'),
               sites   = this.config.get('sites'),
               msg     = "New version deployed to <" + sites[env] + "|the " + env + " environment> by `git config user.name`.",
-              payload = JSON.stringify('{"channel": "#general", "icon_emoji": ":monkey_face:", "username": "deploy", "text": "' + msg + '"}');
+              payload = JSON.stringify('{"channel": "#general", "icon_emoji": ":monkey_face:", "username": "deploy", "text": "' + msg + '"}'),
+              command = 'curl -s -X POST --data-urlencode payload=' + payload + ' https://deliberare.slack.com/services/hooks/incoming-webhook?token=00AslaqafRD6hlO2YcGEpm4v';
 
-          return 'curl -s -X POST --data-urlencode payload=' + payload + ' https://deliberare.slack.com/services/hooks/incoming-webhook?token=00AslaqafRD6hlO2YcGEpm4v'
+          return 'OUTPUT=`cat .deploy_output | grep \'Not creating a release\'`; if [[ "$OUTPUT" = "" ]]; then ' + command + '; else echo $OUTPUT; fi';
         }
       }
     }

@@ -176,7 +176,7 @@ module.exports = function (grunt) {
 
     exec: {
       deploy: {
-        command: "parse deploy <%= apps[env] %> > .deploy_output"
+        command: "parse deploy <%= apps[env] %> -d \"Deploying revision $(git rev-parse --short HEAD)\" > .deploy_output"
       },
       announce: {
         command: function() {

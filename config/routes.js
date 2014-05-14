@@ -1,6 +1,6 @@
 angular.module('Routes')
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("/");
 
   $stateProvider
@@ -19,4 +19,4 @@ angular.module('Routes')
       }
     })
     ;
-});
+}]);

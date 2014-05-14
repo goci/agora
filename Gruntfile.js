@@ -100,7 +100,6 @@ module.exports = function (grunt) {
             'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
             'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js',
             'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/**/*js',
-            'lib/assets/vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js',
             'lib/assets/vendor/js/**/*.js'
           ],
           'public/assets/lib.js': [

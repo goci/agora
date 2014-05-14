@@ -4,12 +4,19 @@ angular.module('Routes')
   $urlRouterProvider.otherwise("/");
 
   $stateProvider
+    .state('root', {
+      url: "/"
+    })
     .state('logout', {
       url: "/logout",
-      controller: function($location, $window, $rootScope) {
-        $window.Parse.User.logOut();
-        $rootScope.user = undefined;
-        $location.path('/');
+      resolve: {
+        logout: ['$rootScope', 'User',
+          function($rootScope, User){
+            User.logOut();
+            $rootScope.user = undefined;
+            $state.go('root');
+          }]
       }
-    });
+    })
+    ;
 });

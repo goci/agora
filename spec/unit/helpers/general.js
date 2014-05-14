@@ -41,7 +41,6 @@ describe('General', function () {
       spyOn(global.Parse.User.prototype, 'save').andReturn({
         then: function() { return undefined; }
       });
-      spyOn(global.Parse.Promise.prototype, 'then');
 
       // When
       $rootScope.facebookLogin();

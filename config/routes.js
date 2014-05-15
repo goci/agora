@@ -5,16 +5,23 @@ angular.module('Routes')
 
   $stateProvider
     .state('root', {
-      url: "/"
+      url: "/",
+      resolve: {
+        guest: ['User', '$window',
+          function (User, $window) {
+            if(!User.current()) {
+              $window.location.href = '/home.html';
+            }
+          }]
+      }
     })
     .state('logout', {
       url: "/logout",
       resolve: {
-        logout: ['$rootScope', 'User',
-          function($rootScope, User){
+        logout: ['User', '$window',
+          function(User, $window){
             User.logOut();
-            $rootScope.user = undefined;
-            $state.go('root');
+            $window.location.href = '/home.html';
           }]
       }
     })

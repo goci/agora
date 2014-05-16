@@ -30,15 +30,11 @@ module.exports = function (grunt) {
           { expand: true, cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap', src: ['*'], dest: 'public/assets/bootstrap/', filter: 'isFile' },
           { expand: true, cwd: 'lib/assets/vendor/bower/fontawesome/fonts', src: ['*'], dest: 'public/assets/fonts/fontawesome', filter: 'isFile' }
         ]
-      }
-    },
-
-    concat: {
+      },
       html: {
-        files: {
-          'public/index.html': ['lib/html/index.html'],
-          'public/user/index.html': ['lib/html/user/index.html']
-        },
+        files: [
+          { expand: true, cwd: 'lib/html/', src: ['**/*'], dest: 'public/', filter: 'isFile' },
+        ]
       }
     },
 
@@ -64,11 +60,11 @@ module.exports = function (grunt) {
       },
       gruntfile: {
         files: ['Gruntfile.js', 'bower.json'],
-        tasks: ['concat']
+        tasks: ['copy:html']
       },
       html: {
         files: ['lib/html/**/*.html'],
-        tasks: ['concat:html']
+        tasks: ['copy:html']
       },
       styles: {
         files: ['lib/assets/css/**/*.scss'],
@@ -196,7 +192,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-bower-task');
   grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -205,7 +200,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-jslint');
 
   grunt.registerTask('jslint:all', ['jslint:production', 'jslint:test']);
-  grunt.registerTask('build', ['bower:install', 'jslint:all', 'sass', 'concat', 'uglify', 'copy:fonts']);
+  grunt.registerTask('build', ['bower:install', 'jslint:all', 'sass', 'copy:html', 'uglify', 'copy:fonts']);
   grunt.registerTask('default', ['build']);
 
   grunt.registerTask('test_unit', ['tests_environment', 'build', 'karma:unit']);

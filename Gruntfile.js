@@ -70,9 +70,13 @@ module.exports = function (grunt) {
         files: ['lib/assets/css/**/*.scss'],
         tasks: ['sass']
       },
-      js: {
-        files: ['lib/**/*.js', '!lib/assets/js/vendor/js/*.js', 'config/routes.js'],
-        tasks: ['uglify:js']
+      vendor_js: {
+        files: ['lib/assets/vendor/js/**/*.js'],
+        tasks: ['uglify:vendor_js']
+      },
+      app_js: {
+        files: ['lib/**/*.js', '!lib/assets/vendor/js/bower/**/*.js', 'config/routes.js'],
+        tasks: ['uglify:app_js']
       }
     },
 
@@ -82,12 +86,11 @@ module.exports = function (grunt) {
         compress: false,
         beautify: true
       },
-      js: {
+      vendor_js: {
         options: {
           separator: '\n;'
         },
         files: {
-          'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
           'public/assets/vendor.js': [
             'lib/assets/vendor/bower/jquery/dist/jquery.js',
             'lib/assets/vendor/bower/lodash/dist/lodash.js',
@@ -98,7 +101,15 @@ module.exports = function (grunt) {
             'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/**/*js',
             'lib/assets/vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js',
             'lib/assets/vendor/js/**/*.js'
-          ],
+          ]
+        }
+      },
+      app_js: {
+        options: {
+          separator: '\n;'
+        },
+        files: {
+          'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
           'public/assets/lib.js': [
             'lib/assets/js/app/**/*.js',
             'lib/assets/js/initializers/*.js',

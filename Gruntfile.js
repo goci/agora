@@ -140,9 +140,9 @@ module.exports = function (grunt) {
           nomen: true,
           unparam: true,
           predef: [
-            '_',
+            '_', 'window',
             'describe', 'it', 'browser', 'expect', 'beforeEach', 'spyOn', 'xit', 'jasmine', // karma and jasmine
-            'inject', // angular
+            'inject', 'angular', // angular
             'element', 'by' // webdriver
           ]
         },

@@ -30,11 +30,6 @@ module.exports = function (grunt) {
           { expand: true, cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap', src: ['*'], dest: 'public/assets/bootstrap/', filter: 'isFile' },
           { expand: true, cwd: 'lib/assets/vendor/bower/fontawesome/fonts', src: ['*'], dest: 'public/assets/fonts/fontawesome', filter: 'isFile' }
         ]
-      },
-      html: {
-        files: [
-          { expand: true, cwd: 'lib/html/', src: ['**/*'], dest: 'public/', filter: 'isFile' },
-        ]
       }
     },
 
@@ -53,6 +48,18 @@ module.exports = function (grunt) {
           'public/assets/app.css': ['lib/assets/css/app.scss']
         }
       }
+    },
+
+    htmlmin: {
+      dist: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: [
+          { expand: true, cwd: 'lib/html/', src: ['**/*'], dest: 'public/', filter: 'isFile' },
+        ]
+      },
     },
 
     watch: {
@@ -217,9 +224,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-jslint');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
   grunt.registerTask('jslint:all', ['jslint:production', 'jslint:test']);
-  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jslint:all', 'sass', 'copy:html', 'uglify', 'copy:fonts']);
+  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jslint:all', 'sass', 'htmlmin', 'uglify', 'copy:fonts']);
   grunt.registerTask('default', ['build']);
 
   grunt.registerTask('test_unit', ['tests_environment', 'build', 'karma:unit']);

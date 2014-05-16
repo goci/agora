@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -148,7 +148,7 @@ module.exports = function(grunt) {
       }
     },
 
-    'jsbeautifier': {
+    jsbeautifier: {
       files: [
         '*.js',
         'lib/*.js',
@@ -158,7 +158,8 @@ module.exports = function(grunt) {
       ],
       options: {
         js: {
-          indentSize: 2
+          indentSize: 2,
+          jslintHappy: true,
         }
       }
     },
@@ -233,7 +234,7 @@ module.exports = function(grunt) {
       },
 
       announce: {
-        command: function() {
+        command: function () {
           var env = this.config.get('env'),
             sites = this.config.get('sites'),
             msg = "New version deployed to <" + sites[env] + "|the " + env + " environment> by `git config user.name`.",

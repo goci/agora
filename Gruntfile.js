@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -8,14 +8,14 @@ module.exports = function (grunt) {
 
     sites: {
       'development': 'https://dev.deliberare.com.br',
-      'tests':       'https://tests.deliberare.com.br',
-      'staging':     'https://staging.deliberare.com.br'
+      'tests': 'https://tests.deliberare.com.br',
+      'staging': 'https://staging.deliberare.com.br'
     },
 
     apps: {
       'development': 'agora_development',
-      'tests':       'agora_tests',
-      'staging':     'agora_staging'
+      'tests': 'agora_tests',
+      'staging': 'agora_staging'
     },
 
     bower: {
@@ -26,10 +26,19 @@ module.exports = function (grunt) {
 
     copy: {
       fonts: {
-        files: [
-          { expand: true, cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap', src: ['*'], dest: 'public/assets/bootstrap/', filter: 'isFile' },
-          { expand: true, cwd: 'lib/assets/vendor/bower/fontawesome/fonts', src: ['*'], dest: 'public/assets/fonts/fontawesome', filter: 'isFile' }
-        ]
+        files: [{
+          expand: true,
+          cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
+          src: ['*'],
+          dest: 'public/assets/bootstrap/',
+          filter: 'isFile'
+        }, {
+          expand: true,
+          cwd: 'lib/assets/vendor/bower/fontawesome/fonts',
+          src: ['*'],
+          dest: 'public/assets/fonts/fontawesome',
+          filter: 'isFile'
+        }]
       }
     },
 
@@ -56,9 +65,13 @@ module.exports = function (grunt) {
           removeComments: true,
           collapseWhitespace: true
         },
-        files: [
-          { expand: true, cwd: 'lib/html/', src: ['**/*'], dest: 'public/', filter: 'isFile' },
-        ]
+        files: [{
+          expand: true,
+          cwd: 'lib/html/',
+          src: ['**/*'],
+          dest: 'public/',
+          filter: 'isFile'
+        }, ]
       },
     },
 
@@ -135,6 +148,21 @@ module.exports = function (grunt) {
       }
     },
 
+    'jsbeautifier': {
+      files: [
+        '*.js',
+        'lib/*.js',
+        'lib/assets/js/**/*.js',
+        'lib/helpers/**/*.js',
+        'lib/models/js/**/*.js'
+      ],
+      options: {
+        js: {
+          indentSize: 2
+        }
+      }
+    },
+
     jslint: {
 
       production: {
@@ -206,11 +234,11 @@ module.exports = function (grunt) {
 
       announce: {
         command: function() {
-          var env     = this.config.get('env'),
-              sites   = this.config.get('sites'),
-              msg     = "New version deployed to <" + sites[env] + "|the " + env + " environment> by `git config user.name`.",
-              payload = JSON.stringify('{"channel": "#general", "icon_emoji": ":monkey_face:", "username": "deploy", "text": "' + msg + '"}'),
-              command = 'curl -s -X POST --data-urlencode payload=' + payload + ' https://deliberare.slack.com/services/hooks/incoming-webhook?token=00AslaqafRD6hlO2YcGEpm4v';
+          var env = this.config.get('env'),
+            sites = this.config.get('sites'),
+            msg = "New version deployed to <" + sites[env] + "|the " + env + " environment> by `git config user.name`.",
+            payload = JSON.stringify('{"channel": "#general", "icon_emoji": ":monkey_face:", "username": "deploy", "text": "' + msg + '"}'),
+            command = 'curl -s -X POST --data-urlencode payload=' + payload + ' https://deliberare.slack.com/services/hooks/incoming-webhook?token=00AslaqafRD6hlO2YcGEpm4v';
 
           return 'OUTPUT=`cat .deploy_output | grep \'Not creating a release\'`; if [[ "$OUTPUT" = "" ]]; then ' + command + '; else echo $OUTPUT; fi';
         }
@@ -228,9 +256,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-exec');
   grunt.loadNpmTasks('grunt-jslint');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-jsbeautifier');
 
   grunt.registerTask('jslint:all', ['jslint:production', 'jslint:test']);
-  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jslint:all', 'sass', 'htmlmin', 'uglify', 'copy:fonts']);
+  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint:all', 'sass', 'htmlmin', 'uglify', 'copy:fonts']);
   grunt.registerTask('default', ['build']);
 
   grunt.registerTask('test_unit', ['tests_environment', 'build', 'karma:unit']);

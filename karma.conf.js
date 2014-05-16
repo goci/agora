@@ -60,7 +60,10 @@ module.exports = function(config) {
     browsers: ['ChromeNoSandbox'],
 
     customLaunchers: {
-      ChromeNoSandbox: { base: 'Chrome', flags: ['--no-sandbox'] }
+      ChromeNoSandbox: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
     },
 
 

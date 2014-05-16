@@ -90,8 +90,11 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
-        mangle: false
+        mangle: false,
+        sourceMap: true,
+        sourceMapIncludeSources: true
       },
+
       vendor_js: {
         options: {
           separator: '\n;',

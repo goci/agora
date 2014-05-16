@@ -1,12 +1,13 @@
 'use strict';
 
 describe('Helpers.site', function () {
-  var $rootScope, global;
+  var $rootScope, global, utils;
 
   beforeEach(module('Helpers.site'));
-  beforeEach(inject(function (_$rootScope_, $window) {
+  beforeEach(inject(function (_$rootScope_, $window, _utils_) {
     $rootScope = _$rootScope_;
     global = $window;
+    utils = _utils_;
   }));
 
   describe('facebookLogin', function() {
@@ -38,8 +39,10 @@ describe('Helpers.site', function () {
         };
 
         spyOn(global.Parse.User.prototype, 'save').andReturn({
-          then: function() { return undefined; }
+          then: function(callback) { callback(); }
         });
+
+        spyOn(utils, 'redirect');
       });
 
       it("should save the user only if it doesn't exists", function() {
@@ -68,6 +71,30 @@ describe('Helpers.site', function () {
           username: 'userEmail',
           email: 'userEmail'
         });
+      });
+
+      it('should redirect to root if it exists', function() {
+        spyOn(global.Parse.FacebookUtils, 'logIn').andCallFake(function (permissions, callbacks) {
+          callbacks.success(new global.Parse.User());
+        });
+
+        $rootScope.facebookLogin();
+
+        expect(utils.redirect).toHaveBeenCalledWith('/');
+      });
+
+      it("should redirect to root if doesn't exists", function() {
+        spyOn(global.Parse.FacebookUtils, 'logIn').andCallFake(function (permissions, callbacks) {
+          var user = new global.Parse.User();
+          user.existed = function() {
+            return true;
+          };
+          callbacks.success(user);
+        });
+
+        $rootScope.facebookLogin();
+
+        expect(utils.redirect).toHaveBeenCalledWith('/');
       });
     });
   });

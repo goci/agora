@@ -81,7 +81,7 @@ module.exports = function (grunt) {
       },
       gruntfile: {
         files: ['Gruntfile.js', 'bower.json'],
-        tasks: ['copy:html']
+        tasks: ['build']
       },
       html: {
         files: ['lib/html/**/*.html'],
@@ -92,11 +92,11 @@ module.exports = function (grunt) {
         tasks: ['sass']
       },
       vendor_js: {
-        files: ['lib/assets/vendor/js/**/*.js'],
+        files: ['lib/assets/vendor/**/*.js'],
         tasks: ['uglify:vendor_js']
       },
       app_js: {
-        files: ['lib/**/*.js', '!lib/assets/vendor/js/bower/**/*.js', 'config/routes.js'],
+        files: ['lib/assets/js/**/*.js', 'config/routes.js'],
         tasks: ['uglify:app_js']
       }
     },
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
             'lib/assets/vendor/bower/angular-ui-router/release/angular-ui-router.js',
             'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
             'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js',
-            'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/**/*js',
+            'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/*.js',
             'lib/assets/vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js',
             'lib/assets/vendor/js/**/*.js'
           ]

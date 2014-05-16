@@ -172,9 +172,14 @@ module.exports = function (grunt) {
     },
 
     exec: {
+      clean: {
+        command: 'rm -rf public/*'
+      },
+
       deploy: {
         command: "parse deploy <%= apps[env] %> -d \"Deploying revision $(git rev-parse --short HEAD)\" > .deploy_output"
       },
+
       announce: {
         command: function() {
           var env     = this.config.get('env'),
@@ -200,7 +205,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-jslint');
 
   grunt.registerTask('jslint:all', ['jslint:production', 'jslint:test']);
-  grunt.registerTask('build', ['bower:install', 'jslint:all', 'sass', 'copy:html', 'uglify', 'copy:fonts']);
+  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jslint:all', 'sass', 'copy:html', 'uglify', 'copy:fonts']);
   grunt.registerTask('default', ['build']);
 
   grunt.registerTask('test_unit', ['tests_environment', 'build', 'karma:unit']);

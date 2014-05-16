@@ -44,7 +44,8 @@ module.exports = function (grunt) {
           'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap',
           'lib/assets/vendor/bower/fontawesome/scss',
           'lib/assets/css'
-        ]
+        ],
+        outputStyle: 'compressed'
       },
       dist: {
         files: {
@@ -82,13 +83,13 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
-        mangle: false,
-        compress: false,
-        beautify: true
+        mangle: false
       },
       vendor_js: {
         options: {
-          separator: '\n;'
+          separator: '\n;',
+          compress: true,
+          beautify: false
         },
         files: {
           'public/assets/vendor.js': [
@@ -106,7 +107,9 @@ module.exports = function (grunt) {
       },
       app_js: {
         options: {
-          separator: '\n;'
+          separator: '\n;',
+          compress: false,
+          beautify: false
         },
         files: {
           'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],

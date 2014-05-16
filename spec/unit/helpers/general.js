@@ -26,27 +26,36 @@ describe('Helpers.site', function () {
       expect(global.Parse.FacebookUtils.logIn).toHaveBeenCalledWith('public_profile,email,user_location', jasmine.any(Object));
     });
 
-    it("should save the user by passing a 'facebook_id' instead of an 'id' after login", function() {
-      // Given
-      global.FB = {
-        api: function(url, callback) {
-          callback({id: 'facebookId'});
-        }
-      };
+    describe('after login', function() {
+      it("should save the user by passing facebook's info plus: facebook_id instead of the id, username as user's email", function() {
+        // Given
+        global.FB = {
+          api: function(url, callback) {
+            callback({
+              id: 'facebookId',
+              email: 'userEmail'
+            });
+          }
+        };
 
-      spyOn(global.Parse.FacebookUtils, 'logIn').andCallFake(function (permissions, callbacks) {
-        callbacks.success(new global.Parse.User());
+        spyOn(global.Parse.FacebookUtils, 'logIn').andCallFake(function (permissions, callbacks) {
+          callbacks.success(new global.Parse.User());
+        });
+
+        spyOn(global.Parse.User.prototype, 'save').andReturn({
+          then: function() { return undefined; }
+        });
+
+        // When
+        $rootScope.facebookLogin();
+
+        // Then
+        expect(global.Parse.User.prototype.save).toHaveBeenCalledWith({
+          facebook_id: 'facebookId',
+          username: 'userEmail',
+          email: 'userEmail'
+        });
       });
-
-      spyOn(global.Parse.User.prototype, 'save').andReturn({
-        then: function() { return undefined; }
-      });
-
-      // When
-      $rootScope.facebookLogin();
-
-      // Then
-      expect(global.Parse.User.prototype.save).toHaveBeenCalledWith({facebook_id: 'facebookId'});
     });
   });
 

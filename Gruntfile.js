@@ -166,7 +166,7 @@ module.exports = function (grunt) {
 
     protractor: {
       options: {
-        keepAlive: true,
+        keepAlive: false,
         noColor: false
       },
       test: {

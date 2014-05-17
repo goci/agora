@@ -7,9 +7,9 @@ module.exports = function (grunt) {
     env: 'development',
 
     sites: {
-      'development': 'https://dev.deliberare.com.br',
-      'tests': 'https://tests.deliberare.com.br',
-      'staging': 'https://staging.deliberare.com.br'
+      'development': 'http://dev.deliberare.com.br',
+      'tests': 'http://tests.deliberare.com.br',
+      'staging': 'http://staging.deliberare.com.br'
     },
 
     apps: {

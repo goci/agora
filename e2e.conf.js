@@ -14,6 +14,8 @@ exports.config = {
   baseUrl: baseUrl,
 
   onPrepare: function () {
+    browser.driver.manage().window().setSize(1280, 800);
+
     jasmine.getEnv().addReporter(new ScreenshotReporter("./tmp/agora/screenshots"));
 
     global.waitForUrl = function (urlRegex) {

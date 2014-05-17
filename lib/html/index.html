@@ -16,8 +16,6 @@
   <body>
     <ng-include src="'logged-in.html'" ng-if="user"></ng-include>
     <ng-include src="'logged-out.html'" ng-if="!user"></ng-include>
-
-    <div ui-view></div>
     <div id="fb-root"></div>
   </body>
 </html>

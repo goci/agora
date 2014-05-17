@@ -5,7 +5,7 @@ var Home = function () {
   this.logoutButton = element(by.css('[test-name="logout-button"]'));
 
   this.visit = function () {
-    browser.get('/home.html');
+    browser.get('/');
   };
 
   this.logIn = function (callback) {

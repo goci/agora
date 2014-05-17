@@ -1,4 +1,5 @@
-var baseUrl = process.env.SNAP_CI ? 'http://tests.deliberare.com.br/' : 'http://local.deliberare.com.br:8000/';
+var baseUrl = process.env.SNAP_CI ? 'http://tests.deliberare.com.br/' : 'http://tests.deliberare.com.br/';
+var ScreenshotReporter = require('./spec/e2e/reporters/ScreenshotReporter.js');
 
 exports.config = {
   specs: ['spec/e2e/**/*_spec.js'],
@@ -13,6 +14,8 @@ exports.config = {
   baseUrl: baseUrl,
 
   onPrepare: function () {
+    jasmine.getEnv().addReporter(new ScreenshotReporter("/tmp/agora/screenshots"));
+
     global.waitForUrl = function (urlRegex) {
       var currentUrl;
 

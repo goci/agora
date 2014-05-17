@@ -85,7 +85,7 @@ module.exports = function (grunt) {
       },
       html: {
         files: ['lib/html/**/*.html'],
-        tasks: ['copy:html']
+        tasks: ['htmlmin']
       },
       styles: {
         files: ['lib/assets/css/**/*.scss'],
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
         tasks: ['uglify:vendor_js']
       },
       app_js: {
-        files: ['lib/assets/js/**/*.js', 'config/routes.js'],
+        files: ['lib/**/*.js', 'config/**/*.js', '!lib/assets/vendor/**/*.js'],
         tasks: ['uglify:app_js']
       }
     },

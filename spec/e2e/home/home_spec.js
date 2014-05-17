@@ -9,11 +9,8 @@ describe('Home', function () {
     home.visit();
   });
 
-  it('shows link for user to login', function () {
-    expect(home.loginButton.getText()).toEqual('Entrar');
-  });
-
   it('should login with facebook', function () {
+    expect(home.loginButton.getText()).toEqual('Entrar');
     home.loginButton.click();
 
     home.logIn(function () {

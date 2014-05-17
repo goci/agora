@@ -22,9 +22,8 @@ var Home = function () {
 
       browser.switchTo().window(handles[0]);
 
-      global.waitForUrl(/#\/$/).then(function () {
-        callback();
-      });
+      browser.sleep(2000);
+      callback();
     });
   };
 };

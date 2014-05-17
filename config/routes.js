@@ -11,10 +11,10 @@ angular.module('Routes')
       .state('logout', {
         url: "/logout",
         resolve: {
-          logout: ['User', '$window',
-            function (User, $window) {
+          logout: ['User', 'utils',
+            function (User, utils) {
               User.logOut();
-              $window.location.reload();
+              utils.redirect('/');
             }
           ]
         }

@@ -30,13 +30,13 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
           src: ['*'],
-          dest: 'public/assets/bootstrap/',
+          dest: 'parse/public/assets/bootstrap/',
           filter: 'isFile'
         }, {
           expand: true,
           cwd: 'lib/assets/vendor/bower/fontawesome/fonts',
           src: ['*'],
-          dest: 'public/assets/fonts/fontawesome',
+          dest: 'parse/public/assets/fonts/fontawesome',
           filter: 'isFile'
         }]
       }
@@ -53,8 +53,8 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'public/assets/vendor.css': ['lib/assets/css/vendor-imports.scss'],
-          'public/assets/app.css': ['lib/assets/css/app.scss']
+          'parse/public/assets/vendor.css': ['lib/assets/css/vendor-imports.scss'],
+          'parse/public/assets/app.css': ['lib/assets/css/app.scss']
         }
       }
     },
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'lib/html/',
           src: ['**/*'],
-          dest: 'public/',
+          dest: 'parse/public/',
           filter: 'isFile'
         }, ]
       },
@@ -115,7 +115,7 @@ module.exports = function (grunt) {
           beautify: false
         },
         files: {
-          'public/assets/vendor.js': [
+          'parse/public/assets/vendor.js': [
             'lib/assets/vendor/bower/jquery/dist/jquery.js',
             'lib/assets/vendor/bower/lodash/dist/lodash.js',
             'lib/assets/vendor/bower/angular/angular.js',
@@ -135,15 +135,15 @@ module.exports = function (grunt) {
           beautify: false
         },
         files: {
-          'public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
-          'public/assets/lib.js': [
+          'parse/public/assets/config.js': ['lib/assets/js/config/<%= env %>.js'],
+          'parse/public/assets/lib.js': [
             'lib/assets/js/app/**/*.js',
             'lib/assets/js/initializers/*.js',
             'lib/init_modules.js',
             'config/routes.js'
           ],
-          'public/assets/helpers.js': ['lib/helpers/*.js'],
-          'public/assets/models.js': ['lib/models/*.js']
+          'parse/public/assets/helpers.js': ['lib/helpers/*.js'],
+          'parse/public/assets/models.js': ['lib/models/*.js']
         }
       }
     },
@@ -227,11 +227,11 @@ module.exports = function (grunt) {
 
     exec: {
       clean: {
-        command: 'rm -rf public/*'
+        command: 'rm -rf parse/public/*'
       },
 
       deploy: {
-        command: "parse deploy <%= apps[env] %> -d \"Deploying revision $(git rev-parse --short HEAD)\" > .deploy_output"
+        command: "cd parse && parse deploy <%= apps[env] %> -d \"Deploying revision $(git rev-parse --short HEAD)\" > ../.deploy_output"
       },
 
       announce: {

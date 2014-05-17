@@ -1,4 +1,4 @@
-var baseUrl = process.env.SNAP_CI ? 'http://tests.deliberare.com.br/' : 'http://tests.deliberare.com.br/';
+var baseUrl = process.env.SNAP_CI ? 'http://tests.deliberare.com.br/' : 'http://local.deliberare.com.br:8000/';
 var ScreenshotReporter = require('./spec/e2e/reporters/ScreenshotReporter.js');
 
 exports.config = {

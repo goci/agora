@@ -1,6 +1,6 @@
 'use strict';
 
-var Home = function() {
+var Home = function () {
   this.loginButton = element(by.css('[test-name="login-button"]'));
   this.logoutButton = element(by.css('[test-name="logout-button"]'));
 

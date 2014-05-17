@@ -5,7 +5,7 @@ var Home = require('./home.po.js');
 describe('Home', function () {
   var home = new Home();
 
-  beforeEach(function() {
+  beforeEach(function () {
     home.visit();
   });
 
@@ -16,7 +16,7 @@ describe('Home', function () {
   it('should login with facebook', function () {
     home.loginButton.click();
 
-    home.logIn(function() {
+    home.logIn(function () {
       expect(home.logoutButton.getText()).toEqual('Sair');
     });
   });

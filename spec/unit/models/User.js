@@ -8,7 +8,7 @@ describe('User', function () {
     User = _User_;
   }));
 
-  it("should return facebook's picture url", function() {
+  it("should return facebook's picture url", function () {
     var user = new User();
     user.facebook_id = '123';
 

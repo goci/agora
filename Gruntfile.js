@@ -154,7 +154,8 @@ module.exports = function (grunt) {
         'lib/*.js',
         'lib/assets/js/**/*.js',
         'lib/helpers/**/*.js',
-        'lib/models/js/**/*.js'
+        'lib/models/js/**/*.js',
+        'spec/**/*.js'
       ],
       options: {
         js: {

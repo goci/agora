@@ -7,10 +7,10 @@ angular.module('Routes')
     .state('root', {
       url: "/",
       resolve: {
-        guest: ['User', '$window',
-          function (User, $window) {
+        guest: ['User', '$location',
+          function (User, $location) {
             if(!User.current()) {
-              $window.location.href = '/home.html';
+              $location.url('/home.html');
             }
           }]
       }
@@ -18,10 +18,10 @@ angular.module('Routes')
     .state('logout', {
       url: "/logout",
       resolve: {
-        logout: ['User', '$window',
-          function(User, $window){
+        logout: ['User', '$location',
+          function(User, $location){
             User.logOut();
-            $window.location.href = '/home.html';
+            $location.url('/home.html');
           }]
       }
     })

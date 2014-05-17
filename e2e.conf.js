@@ -14,7 +14,7 @@ exports.config = {
   baseUrl: baseUrl,
 
   onPrepare: function () {
-    jasmine.getEnv().addReporter(new ScreenshotReporter("/tmp/agora/screenshots"));
+    jasmine.getEnv().addReporter(new ScreenshotReporter("./tmp/agora/screenshots"));
 
     global.waitForUrl = function (urlRegex) {
       var currentUrl;

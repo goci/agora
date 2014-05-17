@@ -277,6 +277,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('ci', ['tests_environment', 'build', 'test_unit', 'exec:deploy', 'exec:announce', 'test_functional']);
 
+  grunt.registerTask('test', ['build', 'test_unit']);
+
   function setStagingEnvironment() {
     grunt.config.set('env', 'staging');
   }

@@ -7,23 +7,14 @@ angular.module('Routes')
     $stateProvider
       .state('root', {
         url: "/",
-        resolve: {
-          guest: ['User', '$location',
-            function (User, $location) {
-              if (!User.current()) {
-                $location.url('/home.html');
-              }
-            }
-          ]
-        }
       })
       .state('logout', {
         url: "/logout",
         resolve: {
-          logout: ['User', '$location',
-            function (User, $location) {
+          logout: ['User', '$window',
+            function (User, $window) {
               User.logOut();
-              $location.url('/home.html');
+              $window.location.reload();
             }
           ]
         }

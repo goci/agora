@@ -37,21 +37,13 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right user-area">
-            <li ng-show="!user">
-              <a href="javascript:;" ng-click="facebookLogin()">
-                <i class="fa fa-sign-in"></i>
-                Entrar
-              </a>
-            </li>
-
-            <li ng-show="user">
+            <li>
               <a href="javascript:;">
                 Olá, {{ user.first_name }}
                 <img class="avatar" ng-src="{{ user.facebookPictureUrl() }}" />
               </a>
             </li>
-
-            <li ng-show="user">
+            <li>
               <a class="logout" href="#/logout" test-name="logout-button">
                 <i class="fa fa-sign-out"></i>
                 Sair
@@ -64,6 +56,5 @@
 
     <div ui-view></div>
 
-    <div id="fb-root"></div>
   </body>
 </html>

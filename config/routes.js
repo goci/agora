@@ -14,7 +14,6 @@ angular.module('Routes')
           logout: ['User', 'utils',
             function (User, utils) {
               User.logOut();
-              utils.redirect('/');
             }
           ]
         }

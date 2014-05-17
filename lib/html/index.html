@@ -14,8 +14,8 @@
     <script type="text/javascript" src="assets/models.js"></script>
   </head>
   <body>
-    <ng-include src="'logged-in.html'" ng-if="user"></ng-include>
-    <ng-include src="'logged-out.html'" ng-if="!user"></ng-include>
+    <ng-include src="'logged-in.html'" ng-if="user()"></ng-include>
+    <ng-include src="'logged-out.html'" ng-if="!user()"></ng-include>
     <div id="fb-root"></div>
   </body>
 </html>

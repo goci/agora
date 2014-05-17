@@ -10,12 +10,12 @@ describe('Helpers', function () {
     assignVars = _assignVars_;
   }));
 
-  it('should assign a user with the current logged user', function () {
+  it('should assign a user with the current logged user function', function () {
     spyOn(User, 'current').andReturn('theUser');
 
     assignVars();
 
-    expect($rootScope.user).toEqual('theUser');
+    expect($rootScope.user()).toEqual('theUser');
   });
 
 

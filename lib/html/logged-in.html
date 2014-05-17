@@ -23,8 +23,8 @@
       <ul class="nav navbar-nav navbar-right user-area">
         <li>
           <a href="javascript:;">
-            Olá, {{ user.first_name }}
-            <img class="avatar" ng-src="{{ user.facebookPictureUrl() }}" />
+            Olá, {{ user().first_name }}
+            <img class="avatar" ng-src="{{ user().facebookPictureUrl() }}" />
           </a>
         </li>
         <li>

@@ -1,9 +1,9 @@
 'use strict';
 
-describe('Helpers.site', function () {
+describe('Helpers', function () {
   var $rootScope, global, utils;
 
-  beforeEach(module('Helpers.site'));
+  beforeEach(module('Helpers'));
   beforeEach(inject(function (_$rootScope_, $window, _utils_) {
     $rootScope = _$rootScope_;
     global = $window;

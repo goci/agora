@@ -2,15 +2,14 @@
 
 function field(owner, modelName, fieldName) {
 
-  var modelName = modelName + '.' + fieldName;
+  var modelPlusFieldName = modelName + '.' + fieldName,
+    capitalizedFieldName = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
 
   function fieldElement() {
-    return element(by.model(modelName));
+    return element(by.model(modelPlusFieldName));
   }
 
   owner[(fieldName + 'Element')] = fieldElement;
-
-  var capitalizedFieldName = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
 
   owner['fill' + capitalizedFieldName] = function (newValue) {
     fieldElement().clear().then(function () {
@@ -25,7 +24,7 @@ function field(owner, modelName, fieldName) {
   };
 
   owner[fieldName + 'SelectedValue'] = function () {
-    return element(by.selectedOption(modelName)).getText();
+    return element(by.selectedOption(modelPlusFieldName)).getText();
   };
 
   owner[fieldName + 'Value'] = function () {

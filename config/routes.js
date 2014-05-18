@@ -12,13 +12,17 @@ angular.module('Routes')
 
     .state('logout', {
       url: "/logout",
-      resolve: {
-        logout: ['User', 'utils',
-          function (User, utils) {
-            User.logOut();
-          }
-        ]
+      controller: function (User, $state, $rootScope) {
+        User.logOut();
+        $rootScope.user = undefined;
+        $state.go('root');
       }
+    })
+
+    .state('editUser', {
+      url: '/user/edit',
+      controller: 'UserEdit',
+      templateUrl: 'templates/user/edit.html'
     });
   }
-]);
+]).run(function ($state) {});

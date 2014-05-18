@@ -144,7 +144,8 @@ module.exports = function (grunt) {
             'config/routes.js'
           ],
           'parse/public/assets/helpers.js': ['lib/helpers/*.js'],
-          'parse/public/assets/models.js': ['lib/models/*.js']
+          'parse/public/assets/models.js': ['lib/models/*.js'],
+          'parse/public/assets/controllers.js': ['lib/controllers/*.js']
         }
       }
     },

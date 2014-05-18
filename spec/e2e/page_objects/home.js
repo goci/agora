@@ -23,8 +23,14 @@ var Home = function () {
       browser.switchTo().window(handles[0]);
 
       browser.sleep(2000);
-      callback();
+      if (callback) {
+        callback();
+      }
     });
+  };
+
+  this.visitUserEdit = function () {
+    element(by.css('a[ui-sref="editUser"]')).click();
   };
 };
 

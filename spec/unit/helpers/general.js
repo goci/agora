@@ -20,17 +20,16 @@ describe('Helpers', function () {
     it('should assign a user with the current logged user function', function () {
       spyOn(User, 'current').andReturn('theUser');
       assignVars();
-      expect($rootScope.user()).toEqual('theUser');
+      expect($rootScope.user).toEqual('theUser');
     });
   });
 
   describe('facebookLogin', function () {
 
-    var global, utils;
+    var global;
 
-    beforeEach(inject(function ($window, _utils_) {
+    beforeEach(inject(function ($window) {
       global = $window;
-      utils = _utils_;
     }));
 
     it('should login with facebook using Parse API', function () {
@@ -61,8 +60,6 @@ describe('Helpers', function () {
             callback();
           }
         });
-
-        spyOn(utils, 'redirect');
       });
 
       it("should save the user only if it doesn't exists", function () {
@@ -91,30 +88,6 @@ describe('Helpers', function () {
           username: 'userEmail',
           email: 'userEmail'
         });
-      });
-
-      it('should redirect to root if it exists', function () {
-        spyOn(global.Parse.FacebookUtils, 'logIn').andCallFake(function (permissions, callbacks) {
-          callbacks.success(new global.Parse.User());
-        });
-
-        $rootScope.facebookLogin();
-
-        expect(utils.redirect).toHaveBeenCalledWith('/');
-      });
-
-      it("should redirect to root if doesn't exists", function () {
-        spyOn(global.Parse.FacebookUtils, 'logIn').andCallFake(function (permissions, callbacks) {
-          var user = new global.Parse.User();
-          user.existed = function () {
-            return true;
-          };
-          callbacks.success(user);
-        });
-
-        $rootScope.facebookLogin();
-
-        expect(utils.redirect).toHaveBeenCalledWith('/');
       });
     });
   });

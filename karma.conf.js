@@ -16,6 +16,7 @@ module.exports = function (config) {
       'parse/public/assets/lib.js',
       'parse/public/assets/helpers.js',
       'parse/public/assets/models.js',
+      'parse/public/assets/controllers.js',
       'lib/assets/vendor/bower/angular-mocks/angular-mocks.js',
       'spec/unit/**/*.js'
     ],

@@ -222,7 +222,11 @@ module.exports = function (grunt) {
     },
 
     karma: {
-      unit: {
+      watch_unit: {
+        configFile: 'karma.conf.js',
+        singleRun: false
+      },
+      run_unit: {
         configFile: 'karma.conf.js'
       }
     },
@@ -262,23 +266,27 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-jsbeautifier');
 
+  // Build
   grunt.registerTask('jslint:all', ['jslint:production', 'jslint:test']);
   grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint:all', 'sass', 'htmlmin', 'uglify', 'copy:fonts']);
+  grunt.registerTask('build_for_tests', ['exec:clean', 'sass', 'htmlmin', 'uglify']);
   grunt.registerTask('default', ['build']);
 
-  grunt.registerTask('test_unit', ['tests_environment', 'build', 'karma:unit']);
-  grunt.registerTask('test_functional', ['tests_environment', 'build', 'protractor:test']);
 
+  // Tests
   grunt.registerTask('tests_environment', 'Set tests environment', setTestsEnvironment);
   grunt.registerTask('staging_environment', 'Set staging environment', setStagingEnvironment);
 
+  grunt.registerTask('test_unit', ['tests_environment', 'build_for_tests', 'karma:watch_unit']);
+  grunt.registerTask('run_test_unit', ['tests_environment', 'build_for_tests', 'karma:run_unit']);
+  grunt.registerTask('test_functional', ['tests_environment', 'build_for_tests', 'protractor:test']);
+
+  // Deploy
   grunt.registerTask('deploy_to_development', ['build', 'exec:deploy', 'exec:announce']);
   grunt.registerTask('deploy_to_staging', ['staging_environment', 'build', 'exec:deploy', 'exec:announce']);
   grunt.registerTask('deploy_to_tests', ['tests_environment', 'build', 'exec:deploy', 'exec:announce']);
 
-  grunt.registerTask('ci', ['tests_environment', 'build', 'test_unit', 'exec:deploy', 'exec:announce', 'test_functional']);
-
-  grunt.registerTask('test', ['build', 'test_unit']);
+  grunt.registerTask('ci', ['tests_environment', 'build', 'run_test_unit', 'exec:deploy', 'exec:announce', 'test_functional']);
 
   function setStagingEnvironment() {
     grunt.config.set('env', 'staging');

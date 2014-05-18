@@ -2,6 +2,7 @@ var baseUrl = process.env.SNAP_CI ? 'http://tests.deliberare.com.br/' : 'http://
 var ScreenshotReporter = require('./spec/e2e/reporters/ScreenshotReporter.js');
 
 var Home = require('./spec/e2e/page_objects/home.js');
+var lodash = require('lodash');
 
 exports.config = {
   specs: ['spec/e2e/features/**/*_spec.js'],
@@ -17,6 +18,7 @@ exports.config = {
 
   onPrepare: function () {
     global.baseUrl = baseUrl;
+    global._ = lodash;
 
     browser.driver.manage().window().setSize(1280, 800);
 

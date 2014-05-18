@@ -1,6 +1,25 @@
-<div>
-  <form ng-submit="saveUser()">
-    Name:
-    <input ng-model="user.name" />
+<div class="edit-user">
+  <div class="page-header">
+    <h2>Seus dados</h2>
+  </div>
+
+  <form ng-submit="saveUser()" role="form">
+    <div class="form-group">
+      <label for="name">Nome</label>
+      <input id="name" class="form-control" ng-model="user.name" />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" class="form-control" ng-model="user.email" readonly="true" />
+    </div>
+    <div class="form-group">
+      <label for="state">Estado</label>
+      <select id="state" class="form-control" ng-model="user.state" ng-options="state for state in states"></select>
+    </div>
+    <div class="form-group">
+      <label for="city">Cidade</label>
+      <input id="city" class="form-control" ng-model="user.city" />
+    </div>
+    <input type="submit" class="btn btn-default" value="Salvar" />
   </form>
 </div>

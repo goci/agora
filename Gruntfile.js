@@ -30,7 +30,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/fonts/bootstrap',
           src: ['*'],
-          dest: 'parse/public/assets/bootstrap/',
+          dest: 'parse/public/assets/fonts/bootstrap',
           filter: 'isFile'
         }, {
           expand: true,

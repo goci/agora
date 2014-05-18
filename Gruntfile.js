@@ -270,7 +270,7 @@ module.exports = function (grunt) {
   // Build
   grunt.registerTask('jslint:all', ['jslint:production', 'jslint:test']);
   grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint:all', 'sass', 'htmlmin', 'uglify', 'copy:fonts']);
-  grunt.registerTask('build_for_tests', ['exec:clean', 'sass', 'htmlmin', 'uglify']);
+  grunt.registerTask('build_for_tests', ['sass', 'htmlmin', 'uglify']);
   grunt.registerTask('default', ['build']);
 
 

@@ -103,15 +103,16 @@ module.exports = function (grunt) {
 
     uglify: {
       options: {
-        mangle: false,
+        mangle: false
+        /*,
         sourceMap: true,
-        sourceMapIncludeSources: true
+        sourceMapIncludeSources: true*/
       },
 
       vendor_js: {
         options: {
           separator: '\n;',
-          compress: true,
+          compress: false,
           beautify: false
         },
         files: {
@@ -120,9 +121,9 @@ module.exports = function (grunt) {
             'lib/assets/vendor/bower/lodash/dist/lodash.js',
             'lib/assets/vendor/bower/angular/angular.js',
             'lib/assets/vendor/bower/angular-ui-router/release/angular-ui-router.js',
-            'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
-            'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js',
-            'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/*.js',
+            // 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
+            // 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js',
+            // 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/*.js',
             'lib/assets/vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js',
             'lib/assets/vendor/js/**/*.js'
           ]

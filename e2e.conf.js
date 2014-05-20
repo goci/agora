@@ -23,7 +23,7 @@ exports.config = {
       cleanDb();
     });
 
-    global.create = Db.create;
+    global.create = create;
     global.baseUrl = baseUrl;
     global._ = lodash;
 
@@ -82,4 +82,26 @@ function waitForUrl(urlRegex) {
         });
       });
     });
+}
+
+function create(amount) {
+  var finish = false;
+
+  return {
+    communities: function (callback) {
+      runs(function () {
+        Db.create(amount).communities(function () {
+          finish = true;
+        });
+      });
+
+      waitsFor(function () {
+        return finish;
+      });
+
+      runs(function () {
+        callback();
+      });
+    }
+  }
 }

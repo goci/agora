@@ -4,19 +4,7 @@ describe('Community', function () {
   var count = 2;
 
   beforeEach(function () {
-    var finish = false;
-
-    runs(function () {
-      global.create(count).communities(function () {
-        finish = true;
-      });
-    });
-
-    waitsFor(function () {
-      return finish;
-    });
-
-    runs(function () {
+    global.create(2).communities(function () {
       browser.get('#/communities');
     });
   });

@@ -1,12 +1,12 @@
 var Parse = require('parse').Parse,
     chance = new require('chance')(),
-    config = require(__dirname+'/../parse/config/global.json').applications.agora_development;
+    config = require(__dirname + '/../parse/config/global.json').applications.agora_development;
 
 Parse.initialize(config.applicationId, 'QJTBgCWm1GuM2qUUEOk5OIn6IPdXNbuLChh6etsY', config.masterKey);
 
 var Community = Parse.Object.extend('Community');
 
-create(10).communities();
+module.exports = create;
 
 function create(ammount) {
   return {

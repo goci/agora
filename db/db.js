@@ -18,7 +18,7 @@ function cleanDb (callback) {
 
     new Parse.Query(className).find().then(function (data) {
       if(data.length === 0) {
-        callback();
+        callback && callback();
         return;
       }
 
@@ -30,7 +30,7 @@ function cleanDb (callback) {
 
         data[i].destroy().then(function () {
           if(finish)
-            callback();
+            callback && callback();
         });
       }
     });
@@ -48,7 +48,7 @@ function create (amount) {
 
         new Community().save({ name: chance.name() }).then(function () {
           if(lastRecord)
-            callback();
+            callback && callback();
         });
       }
     }

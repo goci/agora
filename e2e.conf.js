@@ -100,7 +100,7 @@ function create(amount) {
       });
 
       runs(function () {
-        callback();
+        callback && callback();
       });
     }
   }

@@ -1,21 +1,14 @@
 var Parse = require('parse').Parse,
-    chance = new require('chance')(),
     config = require(__dirname+'/../parse/config/global.json').applications.agora_development;
 
 Parse.initialize(config.applicationId, 'QJTBgCWm1GuM2qUUEOk5OIn6IPdXNbuLChh6etsY', config.masterKey);
 
 var Community = Parse.Object.extend('Community');
 
-create(10).communities();
+new Parse.Query(Community).find().then(function (data) {
+  if(data.length === 0) return;
 
-function create(ammount) {
-  return {
-    communities: function() {
-      for(var i = 0; i < ammount; i++) {
-        new Community().save({
-          name: chance.name()
-        });
-      }
-    }
+  for(var i in data) {
+    data[i].destroy();
   }
-}
+});

@@ -1,6 +1,8 @@
 var baseUrl = process.env.SNAP_CI ? 'http://tests.deliberare.com.br/' : 'http://local.deliberare.com.br:8000/';
 var ScreenshotReporter = require('./spec/e2e/reporters/ScreenshotReporter.js');
 
+var Db = require('./db/db');
+
 var Home = require('./spec/e2e/page_objects/home.js');
 var lodash = require('lodash');
 
@@ -17,6 +19,11 @@ exports.config = {
   baseUrl: baseUrl,
 
   onPrepare: function () {
+    beforeEach(function () {
+      cleanDb();
+    });
+
+    global.create = Db.create;
     global.baseUrl = baseUrl;
     global._ = lodash;
 
@@ -24,20 +31,8 @@ exports.config = {
 
     jasmine.getEnv().addReporter(new ScreenshotReporter("./tmp/agora/screenshots"));
 
-    global.waitForUrl = function (urlRegex) {
-      var currentUrl;
-
-      return browser.getCurrentUrl().then(function (url) {
-          currentUrl = url;
-        })
-        .then(function () {
-          return browser.wait(function () {
-            return browser.getCurrentUrl().then(function (url) {
-              return urlRegex.test(url);
-            });
-          });
-        });
-    };
+    global.waitForUrl = waitForUrl
+    global.displays = displays
 
     var home = new Home();
     home.visit();
@@ -45,3 +40,46 @@ exports.config = {
     home.logIn();
   }
 };
+
+function cleanDb() {
+  var finish = false;
+
+  runs(function () {
+    Db.cleanDb(function () {
+      finish = true;
+    });
+  });
+
+  waitsFor(function () {
+    return finish;
+  });
+}
+
+function displays(element) {
+  return browser.wait(function () {
+    return element.isDisplayed().then(function (visible) {
+        return visible;
+      },
+      function () {
+        return element.isDisplayed().then(function (visible) {
+          return visible;
+        });
+      }
+    );
+  });
+}
+
+function waitForUrl(urlRegex) {
+  var currentUrl;
+
+  return browser.getCurrentUrl().then(function (url) {
+      currentUrl = url;
+    })
+    .then(function () {
+      return browser.wait(function () {
+        return browser.getCurrentUrl().then(function (url) {
+          return urlRegex.test(url);
+        });
+      });
+    });
+}

@@ -23,6 +23,12 @@ angular.module('Routes')
       url: '/user/edit',
       controller: 'UserEdit',
       templateUrl: 'templates/user/edit.html'
+    })
+
+    .state('communities', {
+      url: '/communities',
+      controller: 'CommunityIndex',
+      templateUrl: 'templates/community/index.html'
     });
   }
 ]).run(function ($state) {});

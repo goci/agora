@@ -1,5 +1,45 @@
-<ng-include src="'logged-in-header.html'" ng-if="user"></ng-include>
+<header class="site-header">
+  <a ui-sref="root">
+    <img src="assets/images/logo.png" alt="Agora" width="100">
+  </a>
 
-<div class="container">
-  <div ui-view></div>
-</div>
+  <a class="logout" href="#/logout" test-name="logout-button">
+    <i class="fa fa-sign-out"></i>
+    Sair
+  </a>
+</header>
+
+<section class="row main-content">
+  <div class="col-sm-2 user-area">
+    <div class="clearfix">
+      <img class="avatar" ng-src="{{ user.facebookPictureUrl() }}"/>
+
+      <span>{{ user.first_name }} {{ user.last_name }}</span>
+      <br>
+      <a ui-sref="editUser">
+        Editar dados
+      </a>
+    </div>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="/">
+            <i class="fa fa-home"></i>
+            Principal
+          </a>
+        </li>
+        <li>
+          <a ui-sref="communities">
+            <i class="fa fa-bars"></i>
+            Comunidades
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="col-sm-10">
+    <div ui-view></div>
+  </div>
+</section>

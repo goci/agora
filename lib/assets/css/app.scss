@@ -1,18 +1,8 @@
 @import "bootstrap";
 
-.navbar {
-  .navbar-nav {
-    &.user-area {
-      .avatar {
-        height: 18px;
-        border-radius: 3px;
-      }
-    }
-  }
-}
+// General
 
-.edit-user {
-  max-width: 500px;
+body {
 }
 
 ul {
@@ -20,6 +10,50 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+// Layout
+
+header.site-header {
+  margin-bottom: 30px;
+  padding: 10px;
+  @include box-shadow(0 0px 4px 0px #ddd);
+
+  a:last-child {
+    float: right;
+  }
+}
+
+.main-content {
+  padding: 10px;
+}
+
+.user-area {
+  > :first-child {
+    img {
+      float: left;
+      margin-right: 10px;
+    }
+  }
+
+  > nav {
+    margin-top: 30px;
+
+    a {
+      color: #666;
+      display: block;
+      padding: 5px 10px;
+
+      &:hover {
+        color: #000;
+        text-decoration: none;
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}
+
+
+// Communities
 
 .communities {
   ul li {
@@ -41,9 +75,6 @@ ul {
       border-top: 0;
       height: 150px;
     }
-
-    &:hover {
-      @include box-shadow(0 0 1px 1px #ddd);
-    }
   }
 }
+

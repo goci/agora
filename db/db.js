@@ -1,8 +1,10 @@
 var Parse = require('parse').Parse,
     chance = new require('chance')(),
-    config = require(__dirname+'/../parse/config/global.json').applications.agora_tests;
+    env = process.env.NODE_ENV || 'development',
+    config = require(__dirname+'/../parse/config/global.json').applications['agora_' + env];
 
-Parse.initialize(config.applicationId, 'S3nP3eZeGX20JKiJckO31z89ckOeBwmg19r37EfF', config.masterKey);
+
+Parse.initialize(config.applicationId, config.jsKey, config.masterKey);
 
 
 var Community = Parse.Object.extend('Community');

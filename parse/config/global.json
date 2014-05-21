@@ -9,11 +9,13 @@
         },
         "agora_development": {
             "applicationId": "sKmm6vOfVdAuU1CXXrqLrJ2s0UBRP1F7RS4taeL4",
-            "masterKey": "KOqs6DiFqfeUMNhGXcBv7dhbXiVxluvejAiKrnfl"
+            "masterKey": "KOqs6DiFqfeUMNhGXcBv7dhbXiVxluvejAiKrnfl",
+            "jsKey": "QJTBgCWm1GuM2qUUEOk5OIn6IPdXNbuLChh6etsY"
         },
         "agora_tests": {
             "applicationId": "96Y0zacuOllgK1ZHmzt3oF7d5tM5SVYEMCffZqT2",
-            "masterKey": "4qEjIA5AGMbWjcwVHD9JVR7ABrB3CmhLfeGihIji"
+            "masterKey": "4qEjIA5AGMbWjcwVHD9JVR7ABrB3CmhLfeGihIji",
+            "jsKey": "S3nP3eZeGX20JKiJckO31z89ckOeBwmg19r37EfF"
         }
     },
     "global": {

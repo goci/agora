@@ -10,7 +10,8 @@
       $stateProvider
 
       .state('root', {
-        url: "/"
+        url: "/",
+        templateUrl: 'templates/home/index.html'
       })
 
       .state('logout', {

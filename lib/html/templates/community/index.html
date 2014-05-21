@@ -1,8 +1,11 @@
-<section>
+<section class="communities">
   <p ng-if="communities.length === 0">Não há nenhuma comunidade disponível</p>
   <ul test-name="communities-list">
     <li ng-repeat="c in communities">
-      {{c.name}}
+      <header>{{c.name}}</header>
+      <div class="content">
+
+      </div>
     </li>
   </ul>
 </section>

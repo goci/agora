@@ -1,3 +1,5 @@
+@import "bootstrap";
+
 .navbar {
   .navbar-nav {
     &.user-area {
@@ -11,4 +13,37 @@
 
 .edit-user {
   max-width: 500px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.communities {
+  ul li {
+    width: 200px;
+    float: left;
+    margin: 10px;
+
+    > header {
+      @include border-top-radius(4px);
+      padding: 10px;
+      @include border-top-radius(4px);
+      background-color: #45B8AC;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    > .content {
+      border: 1px solid #ddd;
+      border-top: 0;
+      height: 150px;
+    }
+
+    &:hover {
+      @include box-shadow(0 0 1px 1px #ddd);
+    }
+  }
 }

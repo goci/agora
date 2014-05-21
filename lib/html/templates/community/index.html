@@ -2,9 +2,15 @@
   <p ng-if="communities.length === 0">Não há nenhuma comunidade disponível</p>
   <ul test-name="communities-list">
     <li ng-repeat="c in communities">
-      <header>{{c.name}}</header>
+      <header>
+        {{c.name}}
+
+        <a href="javascript:;" class="pull-right">
+          <i class="fa fa-heart-o"></i>
+        </a>
+      </header>
       <div class="content">
-        {{c.description}}
+        <p>{{c.description}}</p>
       </div>
     </li>
   </ul>

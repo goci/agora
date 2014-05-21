@@ -16,7 +16,6 @@ ul {
 header.site-header {
   margin-bottom: 30px;
   padding: 10px;
-  box-sizing: width;
   @include box-shadow(0 0px 4px 0px #ddd);
 
   a:last-child {

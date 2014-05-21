@@ -48,7 +48,10 @@ function create (amount) {
         if((i+1) === amount)
           lastRecord = true;
 
-        new Community().save({ name: chance.name() }).then(function () {
+        new Community().save({
+          name: chance.name(),
+          description: chance.sentence({words: 6})
+        }).then(function () {
           if(lastRecord)
             callback && callback();
         });

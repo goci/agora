@@ -39,6 +39,15 @@ module.exports = function (grunt) {
           dest: 'parse/public/assets/fonts/fontawesome',
           filter: 'isFile'
         }]
+      },
+      images: {
+        files: [{
+          expand: true,
+          cwd: 'lib/assets/images',
+          src: ['*'],
+          dest: 'parse/public/assets/images',
+          filter: 'isFile'
+        }]
       }
     },
 
@@ -54,7 +63,8 @@ module.exports = function (grunt) {
       dist: {
         files: {
           'parse/public/assets/vendor.css': ['lib/assets/css/vendor-imports.scss'],
-          'parse/public/assets/app.css': ['lib/assets/css/app.scss']
+          'parse/public/assets/app.css': ['lib/assets/css/app.scss'],
+          'parse/public/assets/site.css': ['lib/assets/css/site.scss']
         }
       }
     },
@@ -121,9 +131,6 @@ module.exports = function (grunt) {
             'lib/assets/vendor/bower/lodash/dist/lodash.js',
             'lib/assets/vendor/bower/angular/angular.js',
             'lib/assets/vendor/bower/angular-ui-router/release/angular-ui-router.js',
-            // 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap.js',
-            // 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/tooltip.js',
-            // 'lib/assets/vendor/bower/bootstrap-sass-official/vendor/assets/javascripts/bootstrap/*.js',
             'lib/assets/vendor/bower/angular-bootstrap/ui-bootstrap-tpls.js',
             'lib/assets/vendor/js/**/*.js'
           ]
@@ -269,8 +276,8 @@ module.exports = function (grunt) {
 
   // Build
   grunt.registerTask('jslint:all', ['jslint:production', 'jslint:test']);
-  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint:all', 'sass', 'htmlmin', 'uglify', 'copy:fonts']);
-  grunt.registerTask('build_for_tests', ['sass', 'htmlmin', 'uglify']);
+  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint:all', 'sass', 'htmlmin', 'uglify', 'copy']);
+  grunt.registerTask('build_for_tests', ['sass', 'htmlmin', 'uglify', 'copy']);
   grunt.registerTask('default', ['build']);
 
 

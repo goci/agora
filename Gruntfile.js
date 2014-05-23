@@ -159,13 +159,10 @@ module.exports = function (grunt) {
 
     jsbeautifier: {
       files: [
-        '*.js',
-        'config/**/*.js',
-        'lib/*.js',
-        'lib/assets/js/**/*.js',
-        'lib/helpers/**/*.js',
-        'lib/models/js/**/*.js',
-        'spec/**/*.js'
+        '**/*.js',
+        '!db/parse.js', // why is this file duplicated here?
+        '!lib/assets/vendor/**/*.js',
+        '!node_modules/**/*.js'
       ],
       options: {
         js: {

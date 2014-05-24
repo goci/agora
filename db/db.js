@@ -1,63 +1,52 @@
-var Parse = require('parse').Parse,
-  chance = new require('chance')(),
-  env = process.env.NODE_ENV || 'development',
-  config = require(__dirname + '/../parse/config/global.json').applications['agora_' + env];
+(function () {
+  'use strict';
 
+  var Parse = require('parse').Parse,
+    Q = require('q'),
+    _ = require('lodash'),
+    Chance = require('Chance'),
+    env = process.env.NODE_ENV || 'development',
+    config = require(__dirname + '/../parse/config/global.json').applications['agora_' + env],
+    Community = Parse.Object.extend('Community');
 
-Parse.initialize(config.applicationId, config.jsKey, config.masterKey);
+  Parse.initialize(config.applicationId, config.jsKey, config.masterKey);
 
+  function cleanDb(callback) {
+    var classes = [
+        'Community'
+      ],
+      cb = callback || _.noop;
 
-var Community = Parse.Object.extend('Community');
+    _.each(classes, function (className) {
 
-
-exports.cleanDb = cleanDb;
-exports.create = create;
-
-function cleanDb(callback) {
-  [
-    'Community'
-  ].forEach(function (className) {
-
-    new Parse.Query(className).find().then(function (data) {
-      if (data.length === 0) {
-        callback && callback();
-        return;
-      }
-
-      var finish = false;
-      var length = data.length;
-      for (var i = 0; i < length; i++) {
-        if ((i + 1) === length)
-          finish = true;
-
-        data[i].destroy().then(function () {
-          if (finish)
-            callback && callback();
-        });
-      }
+      new Parse.Query(className).find().then(function (data) {
+        Q.all(_.map(data, function (i) {
+          i.destroy();
+        })).then(cb);
+      });
     });
-  });
-}
-
-function create(amount) {
-  return {
-    communities: function (callback) {
-      var lastRecord = false;
-
-      for (var i = 0; i < amount; i++) {
-        if ((i + 1) === amount)
-          lastRecord = true;
-
-        new Community().save({
-          name: chance.name(),
-          description: chance.sentence({
-            words: 6
-          })
-        }).then(function () {
-          if (lastRecord)
-            callback && callback();
-        });
-      }
-    }
   }
-}
+
+  function create(amount) {
+    var chance = new Chance();
+
+    return {
+      communities: function (callback) {
+        var cb = callback || _.noop;
+
+        return Q.all(_.map(_.range(amount), function (i) {
+          return new Community().save({
+            name: chance.name(),
+            description: chance.sentence({
+              words: 6
+            })
+          });
+        })).then(cb);
+      }
+    };
+  }
+
+  exports.cleanDb = cleanDb;
+  exports.create = create;
+
+}());

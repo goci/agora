@@ -1,4 +1,6 @@
 module.exports = function (grunt) {
+  'use strict';
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -81,8 +83,8 @@ module.exports = function (grunt) {
           src: ['**/*'],
           dest: 'parse/public/',
           filter: 'isFile'
-        }, ]
-      },
+        }]
+      }
     },
 
     watch: {
@@ -167,7 +169,7 @@ module.exports = function (grunt) {
       options: {
         js: {
           indentSize: 2,
-          jslintHappy: true,
+          jslintHappy: true
         }
       }
     },
@@ -187,10 +189,15 @@ module.exports = function (grunt) {
         },
 
         src: [
-          'lib/assets/js/**/*.js',
-          'lib/helpers/**/*.js',
-          'lib/models/**/*.js'
-        ],
+          '**/*.js',
+          '!parse/**/*.js',
+          '!*.js',
+          '!*.conf.js',
+          '!db/*.js',
+          '!lib/assets/vendor/**/*.js',
+          '!node_modules/**/*.js',
+          '!spec/**/*.js'
+        ]
       },
 
       test: {
@@ -210,8 +217,28 @@ module.exports = function (grunt) {
 
         src: [
           'spec/**/*.js',
-        ],
+          '*.conf.js'
+        ]
+      },
+
+      infrastructure: {
+        directives: {
+          node: true,
+          indent: 2,
+          white: true,
+          nomen: true,
+          unparam: true,
+          predef: []
+        },
+
+        src: [
+          '*.js',
+          'db/*.js',
+          '!db/parse.js',
+          '!*.conf.js'
+        ]
       }
+
     },
 
     protractor: {
@@ -272,11 +299,17 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-jsbeautifier');
 
   // Build
-  grunt.registerTask('jslint:all', ['jslint:production', 'jslint:test']);
-  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint:all', 'sass', 'htmlmin', 'uglify', 'copy']);
+  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint', 'sass', 'htmlmin', 'uglify', 'copy']);
   grunt.registerTask('build_for_tests', ['sass', 'htmlmin', 'uglify', 'copy']);
   grunt.registerTask('default', ['build']);
 
+  function setStagingEnvironment() {
+    grunt.config.set('env', 'staging');
+  }
+
+  function setTestsEnvironment() {
+    grunt.config.set('env', 'tests');
+  }
 
   // Tests
   grunt.registerTask('tests_environment', 'Set tests environment', setTestsEnvironment);
@@ -292,12 +325,4 @@ module.exports = function (grunt) {
   grunt.registerTask('deploy_to_tests', ['tests_environment', 'build', 'exec:deploy', 'exec:announce']);
 
   grunt.registerTask('ci', ['tests_environment', 'build', 'run_test_unit', 'exec:deploy', 'exec:announce', 'test_functional']);
-
-  function setStagingEnvironment() {
-    grunt.config.set('env', 'staging');
-  }
-
-  function setTestsEnvironment() {
-    grunt.config.set('env', 'tests');
-  }
 };

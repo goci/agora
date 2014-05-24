@@ -1,34 +1,38 @@
-angular.module('Routes')
+(function () {
+  'use strict';
 
-.config(['$stateProvider', '$urlRouterProvider',
-  function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.otherwise("/");
+  angular.module('Routes')
 
-    $stateProvider
+  .config(['$stateProvider', '$urlRouterProvider',
+    function ($stateProvider, $urlRouterProvider) {
+      $urlRouterProvider.otherwise("/");
 
-    .state('root', {
-      url: "/",
-    })
+      $stateProvider
 
-    .state('logout', {
-      url: "/logout",
-      controller: function (User, $state, $rootScope) {
-        User.logOut();
-        $rootScope.user = undefined;
-        $state.go('root');
-      }
-    })
+      .state('root', {
+        url: "/"
+      })
 
-    .state('editUser', {
-      url: '/user/edit',
-      controller: 'UserEdit',
-      templateUrl: 'templates/user/edit.html'
-    })
+      .state('logout', {
+        url: "/logout",
+        controller: function (User, $state, $rootScope) {
+          User.logOut();
+          $rootScope.user = undefined;
+          $state.go('root');
+        }
+      })
 
-    .state('communities', {
-      url: '/communities',
-      controller: 'CommunityIndex',
-      templateUrl: 'templates/community/index.html'
-    });
-  }
-]).run(function ($state) {});
+      .state('editUser', {
+        url: '/user/edit',
+        controller: 'UserEdit',
+        templateUrl: 'templates/user/edit.html'
+      })
+
+      .state('communities', {
+        url: '/communities',
+        controller: 'CommunityIndex',
+        templateUrl: 'templates/community/index.html'
+      });
+    }
+  ]);
+}());

@@ -23,6 +23,7 @@
   "homepage": "https://github.com/agora-brasil/agora",
   "devDependencies": {
     "chance": "^0.5.6",
+    "q": "^1.0.0",
     "express": "^4.2.0",
     "grunt": "^0.4.4",
     "grunt-bower-task": "^0.3.4",

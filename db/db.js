@@ -4,7 +4,7 @@
   var Parse = require('parse').Parse,
     Q = require('q'),
     _ = require('lodash'),
-    Chance = require('Chance'),
+    Chance = require('chance'),
     env = process.env.NODE_ENV || 'development',
     config = require(__dirname + '/../parse/config/global.json').applications['agora_' + env],
     Community = Parse.Object.extend('Community');

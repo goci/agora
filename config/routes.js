@@ -35,5 +35,7 @@
         templateUrl: 'templates/community/index.html'
       });
     }
-  ]).run(['$state', function ($state) {}]);
+  ]).run(['$state', function () {
+    return undefined;
+  }]);
 }());

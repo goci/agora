@@ -5,7 +5,8 @@
         },
         "agora_staging": {
             "applicationId": "Z90c5luljMj8vZLRd2FD8gKVftaFbcNNLsgVPRkz",
-            "masterKey": "zafmHExmNRLSwuuiqENyolc8epKB2HRWreVqTT21"
+            "masterKey": "zafmHExmNRLSwuuiqENyolc8epKB2HRWreVqTT21",
+            "jsKey": "y0MYEhaz2caxlg1HQWomrTJXcjIrZ0JeajhYwT6Q"
         },
         "agora_development": {
             "applicationId": "sKmm6vOfVdAuU1CXXrqLrJ2s0UBRP1F7RS4taeL4",

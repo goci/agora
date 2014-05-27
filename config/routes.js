@@ -35,9 +35,5 @@
         templateUrl: 'community/index.tmpl.html'
       });
     }
-  ]).run(['$state',
-    function () {
-      return undefined;
-    }
-  ]);
+  ]).run(['$state', _.noop]); // re-evaluates routes when page is reloaded
 }());

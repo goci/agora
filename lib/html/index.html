@@ -7,13 +7,6 @@
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/app.css" ng-if="user">
     <link rel="stylesheet" href="assets/site.css" ng-if="!user">
-
-    <script type="text/javascript" src="assets/config.js"></script>
-    <script type="text/javascript" src="assets/vendor.js"></script>
-    <script type="text/javascript" src="assets/lib.js"></script>
-    <script type="text/javascript" src="assets/helpers.js"></script>
-    <script type="text/javascript" src="assets/models.js"></script>
-    <script type="text/javascript" src="assets/controllers.js"></script>
   </head>
   <body>
     <ng-include src="'logged-in.tmpl.html'" ng-if="user"></ng-include>
@@ -35,5 +28,11 @@
         </div>
       </div>
     </footer>
+    <script type="text/javascript" src="assets/config.js"></script>
+    <script type="text/javascript" src="assets/vendor.js"></script>
+    <script type="text/javascript" src="assets/lib.js"></script>
+    <script type="text/javascript" src="assets/helpers.js"></script>
+    <script type="text/javascript" src="assets/models.js"></script>
+    <script type="text/javascript" src="assets/controllers.js"></script>
   </body>
 </html>

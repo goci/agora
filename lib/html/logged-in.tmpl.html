@@ -9,10 +9,10 @@
   </a>
 </header>
 
-<section class="row main-content">
+<div class="row main-content">
   <div class="col-sm-2 user-area">
     <div class="clearfix">
-      <img class="avatar" ng-src="{{ user.facebookPictureUrl() }}"/>
+      <img class="avatar" ng-src="{{ user.facebookPictureUrl() }}" alt="avatar"/>
 
       <span>{{ user.first_name }} {{ user.last_name }}</span>
       <br>
@@ -42,4 +42,4 @@
   <div class="col-sm-10">
     <div ui-view></div>
   </div>
-</section>
+</div>

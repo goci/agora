@@ -283,6 +283,22 @@ module.exports = function (grunt) {
           return 'OUTPUT=`cat .deploy_output | grep \'Not creating a release\'`; if [[ "$OUTPUT" = "" ]]; then ' + command + '; else echo $OUTPUT; fi';
         }
       }
+    },
+
+    htmlangular: {
+      options: {
+        reportpath: 'tmp/htmlangular-report.json',
+        customattrs: [
+          'test-name'
+        ],
+        relaxerror: [
+          'Element img is missing required attribute src.' // ng-src is good enough in that case
+        ]
+      },
+
+      all: {
+        src: ['lib/html/**/*.html']
+      }
     }
   });
 
@@ -297,9 +313,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-jslint');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-jsbeautifier');
+  grunt.loadNpmTasks('grunt-html-angular-validate');
 
   // Build
-  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint', 'sass', 'htmlmin', 'uglify', 'copy']);
+  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint', 'sass', 'htmlangular', 'htmlmin', 'uglify', 'copy']);
   grunt.registerTask('build_for_tests', ['sass', 'htmlmin', 'uglify', 'copy']);
   grunt.registerTask('default', ['build']);
 

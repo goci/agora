@@ -11,7 +11,7 @@
 
       .state('root', {
         url: "/",
-        templateUrl: 'templates/home/index.html'
+        templateUrl: 'home/index.tmpl.html'
       })
 
       .state('logout', {
@@ -26,13 +26,13 @@
       .state('editUser', {
         url: '/user/edit',
         controller: 'UserEdit',
-        templateUrl: 'templates/user/edit.html'
+        templateUrl: 'user/edit.tmpl.html'
       })
 
       .state('communities', {
         url: '/communities',
         controller: 'CommunityIndex',
-        templateUrl: 'templates/community/index.html'
+        templateUrl: 'community/index.tmpl.html'
       });
     }
   ]).run(['$state',

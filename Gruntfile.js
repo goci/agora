@@ -41,15 +41,6 @@ module.exports = function (grunt) {
           dest: 'parse/public/assets/fonts/fontawesome',
           filter: 'isFile'
         }]
-      },
-      images: {
-        files: [{
-          expand: true,
-          cwd: 'lib/assets/images',
-          src: ['*'],
-          dest: 'parse/public/assets/images',
-          filter: 'isFile'
-        }]
       }
     },
 
@@ -299,6 +290,15 @@ module.exports = function (grunt) {
       all: {
         src: ['lib/html/**/*.html']
       }
+    },
+
+    imagemin: {
+      src: {
+        expand: true,
+        cwd: 'lib/assets/images',
+        src: ['*'],
+        dest: 'parse/public/assets/images'
+      }
     }
   });
 
@@ -314,10 +314,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-jsbeautifier');
   grunt.loadNpmTasks('grunt-html-angular-validate');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
 
   // Build
-  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint', 'sass', 'htmlangular', 'htmlmin', 'uglify', 'copy']);
-  grunt.registerTask('build_for_tests', ['sass', 'htmlmin', 'uglify', 'copy']);
+  grunt.registerTask('build', ['exec:clean', 'bower:install', 'jsbeautifier', 'jslint', 'sass', 'htmlangular', 'htmlmin', 'uglify', 'imagemin', 'copy']);
+  grunt.registerTask('build_for_tests', ['sass', 'imagemin', 'htmlmin', 'uglify', 'copy']);
   grunt.registerTask('default', ['build']);
 
   function setStagingEnvironment() {

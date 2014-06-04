@@ -57,13 +57,13 @@
     });
   }
 
-  function displays(element) {
+  function displays(cond) {
     return browser.wait(function () {
-      return element.isDisplayed().then(function (visible) {
+      return element(cond).isDisplayed().then(function (visible) {
           return visible;
         },
         function () {
-          return element.isDisplayed().then(function (visible) {
+          return element(cond).isDisplayed().then(function (visible) {
             return visible;
           });
         }

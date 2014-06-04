@@ -10,9 +10,8 @@ describe('Community', function () {
   });
 
   it('should list all the communities', function () {
-    global.displays(element(by.css('[test-name="communities-list"]'))).then(function () {
-      var communities = element.all(by.css('[test-name="communities-list"] li'));
-      expect(communities.count()).toEqual(count);
-    });
+    browser.sleep(1000);
+    var communities = element.all(by.css('[test-name="communities-list"] li'));
+    expect(communities.count()).toEqual(count);
   });
 });

@@ -3,17 +3,29 @@
 var Community = require('../../page_objects/community.js');
 
 describe('Community', function () {
-  var community = new Community(),
+  var communityPage = new Community(),
       count = 2;
 
   beforeEach(function () {
     global.create(count).communities(function () {
-      community.visit();
+      communityPage.visit();
+      browser.sleep(1000);
     });
   });
 
   it('should list all communities', function () {
-    browser.sleep(1000);
-    expect(community.communities.count()).toEqual(count);
+    expect(communityPage.communities.count()).toEqual(count);
+  });
+
+  it('should allow the user to join and leave communites', function() {
+    communityPage.joinLink().then(function (joinLink) {
+      expect(joinLink.isDisplayed()).toEqual(true);
+
+      joinLink.click();
+
+      communityPage.leaveLink().then(function (leaveLink) {
+        expect(leaveLink.isDisplayed()).toEqual(true);
+      });
+    });
   });
 });

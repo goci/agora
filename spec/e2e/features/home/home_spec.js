@@ -21,7 +21,11 @@ describe('Home', function () {
     expect(home.logoutButton.getText()).toEqual('Sair');
   });
 
-  it('should have a user edit link', function() {
+  it('should have a link to user edit page', function() {
     expect(home.userEditLink.isDisplayed()).toBeTruthy();
+  });
+
+  it('should have a link to communities page', function() {
+    expect(home.communitiesLink.isDisplayed()).toBeTruthy();
   });
 });

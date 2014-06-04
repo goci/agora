@@ -4,6 +4,7 @@ var Home = function () {
   this.loginButton = element(by.css('[test-name="login-button"]'));
   this.logoutButton = element(by.css('[test-name="logout-button"]'));
   this.userEditLink = element(by.css('a[href="#/user/edit"]'));
+  this.communitiesLink = element(by.css('a[href="#/communities"]'));
 
   this.visit = function () {
     browser.get('/');

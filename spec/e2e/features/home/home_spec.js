@@ -37,15 +37,15 @@ describe('Home', function () {
 
   describe('communities', function () {
     beforeEach(function () {
-      global.create(10).communities();
+      global.create(10).communities(function () {
+        communityPage.visit();
+        browser.sleep(1000);
+      });
     });
 
     it("should show uses's communities", function () {
-      communityPage.visit();
-      browser.sleep(1000);
-
       communityPage.join(3).communities();
-      browser.sleep(500);
+      browser.sleep(1000);
 
       home.visit();
       browser.sleep(1000);

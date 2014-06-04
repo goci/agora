@@ -1,17 +1,19 @@
 'use strict';
 
+var Community = require('../../page_objects/community.js');
+
 describe('Community', function () {
-  var count = 2;
+  var community = new Community(),
+      count = 2;
 
   beforeEach(function () {
-    global.create(2).communities(function () {
-      browser.get('#/communities');
+    global.create(count).communities(function () {
+      community.visit();
     });
   });
 
-  it('should list all the communities', function () {
+  it('should list all communities', function () {
     browser.sleep(1000);
-    var communities = element.all(by.css('[test-name="communities-list"] li'));
-    expect(communities.count()).toEqual(count);
+    expect(community.communities.count()).toEqual(count);
   });
 });

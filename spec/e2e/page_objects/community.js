@@ -2,22 +2,14 @@
 
 var Community = function () {
   var self = this;
-  self.communities = element.all(by.css('[test-name="communities-list"] li'));
-
-  self.firstCommunity = function () {
-    return self.communities[0];
-  };
+  self.communities = element.all(by.repeater('c in communities'));
 
   self.joinLink = function () {
-    return self.communities.then(function (items) {
-      return items[0].findElement(by.css('a[test-name="join"]'));
-    });
+    return element(by.repeater('c in communities').row(0)).findElement(by.css('a[test-name="join"]'));
   };
 
   self.leaveLink = function () {
-    return self.communities.then(function (items) {
-      return items[0].findElement(by.css('a[test-name="leave"]'));
-    });
+    return element(by.repeater('c in communities').row(0)).findElement(by.css('a[test-name="leave"]'));
   };
 
   self.visit = function () {

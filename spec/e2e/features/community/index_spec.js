@@ -17,15 +17,13 @@ describe('Community', function () {
     expect(communityPage.communities.count()).toEqual(count);
   });
 
-  it('should allow the user to join and leave communites', function () {
-    communityPage.joinLink().then(function (joinLink) {
-      expect(joinLink.isDisplayed()).toEqual(true);
+  it('should allow user to join communites', function () {
+    expect(communityPage.joinLink().isDisplayed()).toEqual(true);
+  });
 
-      joinLink.click();
+  it('should allow user to leave communities', function() {
+    communityPage.joinLink().click();
 
-      communityPage.leaveLink().then(function (leaveLink) {
-        expect(leaveLink.isDisplayed()).toEqual(true);
-      });
-    });
+    expect(communityPage.leaveLink().isDisplayed()).toEqual(true);
   });
 });

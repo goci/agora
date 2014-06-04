@@ -332,9 +332,10 @@ module.exports = function (grunt) {
   grunt.registerTask('tests_environment', 'Set tests environment', setTestsEnvironment);
   grunt.registerTask('staging_environment', 'Set staging environment', setStagingEnvironment);
 
-  grunt.registerTask('test_unit', ['tests_environment', 'build_for_tests', 'karma:watch_unit']);
-  grunt.registerTask('run_test_unit', ['tests_environment', 'build_for_tests', 'karma:run_unit']);
-  grunt.registerTask('test_functional', ['tests_environment', 'build_for_tests', 'protractor:test']);
+  grunt.registerTask('prepare_for_test', ['tests_environment', 'build_for_tests'])
+  grunt.registerTask('test_unit', ['prepare_for_test', 'karma:watch_unit']);
+  grunt.registerTask('run_test_unit', ['prepare_for_test', 'karma:run_unit']);
+  grunt.registerTask('test_functional', ['prepare_for_test', 'protractor:test']);
 
   // Deploy
   grunt.registerTask('deploy_to_development', ['build', 'exec:deploy', 'exec:announce']);

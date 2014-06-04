@@ -20,4 +20,8 @@ describe('Home', function () {
     browser.sleep(2000);
     expect(home.logoutButton.getText()).toEqual('Sair');
   });
+
+  it('should have a user edit link', function() {
+    expect(home.userEditLink.isDisplayed()).toBeTruthy();
+  });
 });

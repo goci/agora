@@ -3,6 +3,7 @@
 var Home = function () {
   this.loginButton = element(by.css('[test-name="login-button"]'));
   this.logoutButton = element(by.css('[test-name="logout-button"]'));
+  this.userEditLink = element(by.css('a[href="#/user/edit"]'));
 
   this.visit = function () {
     browser.get('/');
@@ -27,10 +28,6 @@ var Home = function () {
         callback();
       }
     });
-  };
-
-  this.visitUserEdit = function () {
-    element(by.css('a[ui-sref="editUser"]')).click();
   };
 };
 

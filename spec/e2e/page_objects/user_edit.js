@@ -33,6 +33,9 @@ function field(owner, modelName, fieldName) {
 }
 
 var UserEdit = function () {
+  this.visit = function () {
+    browser.get('#/user/edit');
+  };
 
   field(this, 'user', 'name');
   field(this, 'user', 'email');

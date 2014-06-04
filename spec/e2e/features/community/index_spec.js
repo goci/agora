@@ -21,7 +21,7 @@ describe('Community', function () {
     expect(communityPage.joinLink().isDisplayed()).toEqual(true);
   });
 
-  it('should allow user to leave communities', function() {
+  it('should allow user to leave communities', function () {
     communityPage.joinLink().click();
 
     expect(communityPage.leaveLink().isDisplayed()).toEqual(true);

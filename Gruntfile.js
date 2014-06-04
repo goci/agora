@@ -321,10 +321,12 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['build']);
 
   function setStagingEnvironment() {
+    process.env.NODE_ENV = 'staging';
     grunt.config.set('env', 'staging');
   }
 
   function setTestsEnvironment() {
+    process.env.NODE_ENV = 'tests';
     grunt.config.set('env', 'tests');
   }
 

@@ -9,37 +9,39 @@
   </a>
 </header>
 
-<div class="row main-content">
-  <div class="col-sm-2 user-area">
-    <div class="clearfix">
-      <img class="avatar" ng-src="{{ user.facebookPictureUrl() }}" alt="avatar"/>
+<div class="main-content">
+  <div class="row">
+    <div class="col-sm-2 user-area">
+      <div class="clearfix">
+        <img class="avatar" ng-src="{{ user.facebookPictureUrl() }}" alt="avatar"/>
 
-      <span>{{ user.first_name }} {{ user.last_name }}</span>
-      <br>
-      <a ui-sref="editUser">
-        Editar dados
-      </a>
+        <span>{{ user.first_name }} {{ user.last_name }}</span>
+        <br>
+        <a ui-sref="editUser">
+          Editar dados
+        </a>
+      </div>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="/">
+              <i class="fa fa-home"></i>
+              Principal
+            </a>
+          </li>
+          <li>
+            <a ui-sref="communities">
+              <i class="fa fa-bars"></i>
+              Comunidades
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
-    <nav>
-      <ul>
-        <li>
-          <a href="/">
-            <i class="fa fa-home"></i>
-            Principal
-          </a>
-        </li>
-        <li>
-          <a ui-sref="communities">
-            <i class="fa fa-bars"></i>
-            Comunidades
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-
-  <div class="col-sm-10">
-    <div ui-view></div>
+    <div class="col-sm-10">
+      <div ui-view></div>
+    </div>
   </div>
 </div>

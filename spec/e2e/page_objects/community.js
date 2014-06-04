@@ -20,7 +20,7 @@ var Community = function () {
     return {
       communities: function () {
         element.all(by.css('a[test-name="join"]')).then(function (joinLinks) {
-          for(var i = 0; i < amount; i++) {
+          for (var i = 0; i < amount; i++) {
             joinLinks[i].click();
           }
         });

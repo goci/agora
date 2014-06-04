@@ -11,7 +11,7 @@ describe('Home', function () {
     home.visit();
   });
 
-  describe('authentication', function() {
+  describe('authentication', function () {
     it('should logout', function () {
       home.logoutButton.click();
 
@@ -25,7 +25,7 @@ describe('Home', function () {
     });
   });
 
-  describe('links to other pages', function() {
+  describe('links to other pages', function () {
     it('should have a link to user edit page', function () {
       expect(home.userEditLink.isDisplayed()).toBeTruthy();
     });
@@ -35,7 +35,7 @@ describe('Home', function () {
     });
   });
 
-  describe('communities', function() {
+  describe('communities', function () {
     beforeEach(function () {
       global.create(10).communities();
     });

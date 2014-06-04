@@ -5,6 +5,7 @@ var Home = function () {
   this.logoutButton = element(by.css('[test-name="logout-button"]'));
   this.userEditLink = element(by.css('a[href="#/user/edit"]'));
   this.communitiesLink = element(by.css('a[href="#/communities"]'));
+  this.communities = element.all(by.repeater('c in user.communities'));
 
   this.visit = function () {
     browser.get('/');

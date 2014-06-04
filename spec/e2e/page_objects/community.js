@@ -15,6 +15,18 @@ var Community = function () {
   self.visit = function () {
     browser.get('#/communities');
   };
+
+  self.join = function (amount) {
+    return {
+      communities: function () {
+        element.all(by.css('a[test-name="join"]')).then(function (joinLinks) {
+          for(var i = 0; i < amount; i++) {
+            joinLinks[i].click();
+          }
+        });
+      }
+    };
+  };
 };
 
 module.exports = Community;

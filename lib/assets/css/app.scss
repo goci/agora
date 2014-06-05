@@ -85,3 +85,16 @@ header.site-header {
     }
   }
 }
+
+#loading {
+  position: fixed;
+  left: 50%;
+  top: 0;
+  padding: 5px 15px;
+  margin-left: -40px;
+  z-index: 100;
+  font-size: 15px;
+  color: #222;
+  border: 1px solid #f0c36d;
+  background: #f9edbe;
+}

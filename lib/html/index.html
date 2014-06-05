@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="assets/site.css" ng-if="!user">
   </head>
   <body>
+    <div id="loading" ng-show="countAsync">Carregando...</div>
     <ng-include src="'logged-in.tmpl.html'" ng-if="user"></ng-include>
     <ng-include src="'logged-out.tmpl.html'" ng-if="!user"></ng-include>
     <div id="fb-root"></div>

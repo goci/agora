@@ -13,7 +13,7 @@ describe('UserEdit', function () {
     userEdit.fillCity('Macae');
     userEdit.saveButton().click();
 
-    waitAsyncCalls(function () {
+    waitForAsyncCalls(function () {
       userEdit.visit();
     });
   });
@@ -26,7 +26,7 @@ describe('UserEdit', function () {
     userEdit.fillCity('Recife');
     userEdit.saveButton().click();
 
-    waitAsyncCalls(function () {
+    waitForAsyncCalls(function () {
       userEdit.visit();
 
       expect(userEdit.nameValue()).toEqual('Gorilao da Bola Vermelha');

@@ -43,13 +43,13 @@ describe('Home', function () {
     });
 
     it("should show uses's communities", function () {
-      waitAsyncCalls().then(function () {
+      waitForAsyncCalls().then(function () {
         communityPage.join(3).communities();
 
-        waitAsyncCalls().then(function () {
+        waitForAsyncCalls().then(function () {
           home.visit();
 
-          waitAsyncCalls().then(function () {
+          waitForAsyncCalls().then(function () {
             expect(home.communities.count()).toEqual(3);
           });
         });

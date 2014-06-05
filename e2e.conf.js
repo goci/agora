@@ -67,7 +67,7 @@
       });
   }
 
-  function waitAsyncCalls() {
+  function waitForAsyncCalls() {
     return element(by.css('#loading')).isDisplayed().then(function (visible) {
         return browser.wait(function () {
           return element(by.css('#loading')).isDisplayed().then(function (visible) {
@@ -105,7 +105,7 @@
       global.baseUrl = baseUrl;
       global._ = lodash;
       global.waitForUrl = waitForUrl;
-      global.waitAsyncCalls = waitAsyncCalls;
+      global.waitForAsyncCalls = waitForAsyncCalls;
 
       browser.driver.manage().window().setSize(1280, 800);
       jasmine.getEnv().addReporter(new ScreenshotReporter("./tmp/agora/screenshots"));

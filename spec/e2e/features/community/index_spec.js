@@ -13,19 +13,19 @@ describe('Community', function () {
   });
 
   it('should list all communities', function () {
-    waitAsyncCalls().then(function () {
+    waitForAsyncCalls().then(function () {
       expect(communityPage.communities.count()).toEqual(count);
     });
   });
 
   it('should allow user to join communites', function () {
-    waitAsyncCalls().then(function () {
+    waitForAsyncCalls().then(function () {
       expect(communityPage.joinLink().isDisplayed()).toEqual(true);
     });
   });
 
   it('should allow user to leave communities', function () {
-    waitAsyncCalls().then(function () {
+    waitForAsyncCalls().then(function () {
       communityPage.joinLink().click();
 
       expect(communityPage.leaveLink().isDisplayed()).toEqual(true);

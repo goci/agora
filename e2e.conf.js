@@ -51,39 +51,37 @@
     var currentUrl, now;
 
     return browser.getCurrentUrl().then(function storeCurrentUrl(url) {
-      now = new Date().getTime();
-      currentUrl = url;
-    })
-    .then(function () {
-      return browser.wait(function () {
-        return browser.getCurrentUrl().then(function (url) {
-          return element(by.css('#loading')).isDisplayed().then(function(visible) {
-            var timeout = !!(new Date().getTime() >= now + 500);
+        now = new Date().getTime();
+        currentUrl = url;
+      })
+      .then(function () {
+        return browser.wait(function () {
+          return browser.getCurrentUrl().then(function (url) {
+            return element(by.css('#loading')).isDisplayed().then(function (visible) {
+              var timeout = !!(new Date().getTime() >= now + 500);
 
-            return urlRegex.test(url)
-                   && visible === false
-                   && timeout;
+              return urlRegex.test(url) && visible === false && timeout;
+            });
           });
         });
       });
-    });
   }
 
   function waitAsyncCalls() {
-    return element(by.css('#loading')).isDisplayed().then(function(visible) {
-      return browser.wait(function () {
-        return element(by.css('#loading')).isDisplayed().then(function(visible) {
-          return visible === false;
+    return element(by.css('#loading')).isDisplayed().then(function (visible) {
+        return browser.wait(function () {
+          return element(by.css('#loading')).isDisplayed().then(function (visible) {
+            return visible === false;
+          });
+        });
+      })
+      .then(function () {
+        return browser.wait(function () {
+          return element(by.css('#loading')).isDisplayed().then(function (visible) {
+            return visible === false;
+          });
         });
       });
-    })
-    .then(function () {
-      return browser.wait(function () {
-        return element(by.css('#loading')).isDisplayed().then(function(visible) {
-          return visible === false;
-        });
-      });
-    });
   }
 
   exports.config = {

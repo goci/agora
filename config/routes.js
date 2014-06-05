@@ -40,7 +40,7 @@
         var path = pieces.join('/');
 
         path = path.replace(/\/index$/, '')
-                   .replace(/show$/, ':id');
+          .replace(/show$/, ':id');
 
         return '/' + path;
       }

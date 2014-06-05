@@ -9,21 +9,26 @@ describe('Community', function () {
   beforeEach(function () {
     global.create(count).communities(function () {
       communityPage.visit();
-      browser.sleep(1000);
     });
   });
 
   it('should list all communities', function () {
-    expect(communityPage.communities.count()).toEqual(count);
+    waitAsyncCalls().then(function () {
+      expect(communityPage.communities.count()).toEqual(count);
+    });
   });
 
   it('should allow user to join communites', function () {
-    expect(communityPage.joinLink().isDisplayed()).toEqual(true);
+    waitAsyncCalls().then(function () {
+      expect(communityPage.joinLink().isDisplayed()).toEqual(true);
+    });
   });
 
   it('should allow user to leave communities', function () {
-    communityPage.joinLink().click();
+    waitAsyncCalls().then(function () {
+      communityPage.joinLink().click();
 
-    expect(communityPage.leaveLink().isDisplayed()).toEqual(true);
+      expect(communityPage.leaveLink().isDisplayed()).toEqual(true);
+    });
   });
 });

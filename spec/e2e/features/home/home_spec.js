@@ -39,18 +39,21 @@ describe('Home', function () {
     beforeEach(function () {
       global.create(10).communities(function () {
         communityPage.visit();
-        browser.sleep(1000);
       });
     });
 
     it("should show uses's communities", function () {
-      communityPage.join(3).communities();
-      browser.sleep(1000);
+      waitAsyncCalls().then(function () {
+        communityPage.join(3).communities();
 
-      home.visit();
-      browser.sleep(1000);
+        waitAsyncCalls().then(function () {
+          home.visit();
 
-      expect(home.communities.count()).toEqual(3);
+          waitAsyncCalls().then(function () {
+            expect(home.communities.count()).toEqual(3);
+          });
+        });
+      });
     });
   });
 });

@@ -13,8 +13,9 @@ describe('UserEdit', function () {
     userEdit.fillCity('Macae');
     userEdit.saveButton().click();
 
-    browser.sleep(1000);
-    userEdit.visit();
+    waitAsyncCalls(function () {
+      userEdit.visit();
+    });
   });
 
   it('show user data', function () {
@@ -25,11 +26,12 @@ describe('UserEdit', function () {
     userEdit.fillCity('Recife');
     userEdit.saveButton().click();
 
-    browser.sleep(1000);
-    userEdit.visit();
+    waitAsyncCalls(function () {
+      userEdit.visit();
 
-    expect(userEdit.nameValue()).toEqual('Gorilao da Bola Vermelha');
-    expect(userEdit.stateSelectedValue()).toEqual('Pernambuco');
-    expect(userEdit.cityValue()).toEqual('Recife');
+      expect(userEdit.nameValue()).toEqual('Gorilao da Bola Vermelha');
+      expect(userEdit.stateSelectedValue()).toEqual('Pernambuco');
+      expect(userEdit.cityValue()).toEqual('Recife');
+    });
   });
 });

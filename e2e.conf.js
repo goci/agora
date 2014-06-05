@@ -48,26 +48,41 @@
   }
 
   function waitForUrl(urlRegex) {
-    return browser.getCurrentUrl().then(function () {
+    var currentUrl, now;
+
+    return browser.getCurrentUrl().then(function storeCurrentUrl(url) {
+      now = new Date().getTime();
+      currentUrl = url;
+    })
+    .then(function () {
       return browser.wait(function () {
         return browser.getCurrentUrl().then(function (url) {
-          return urlRegex.test(url);
+          return element(by.css('#loading')).isDisplayed().then(function(visible) {
+            var timeout = !!(new Date().getTime() >= now + 500);
+
+            return urlRegex.test(url)
+                   && visible === false
+                   && timeout;
+          });
         });
       });
     });
   }
 
-  function displays(cond) {
-    return browser.wait(function () {
-      return element(cond).isDisplayed().then(function (visible) {
-          return visible;
-        },
-        function () {
-          return element(cond).isDisplayed().then(function (visible) {
-            return visible;
-          });
-        }
-      );
+  function waitAsyncCalls() {
+    return element(by.css('#loading')).isDisplayed().then(function(visible) {
+      return browser.wait(function () {
+        return element(by.css('#loading')).isDisplayed().then(function(visible) {
+          return visible === false;
+        });
+      });
+    })
+    .then(function () {
+      return browser.wait(function () {
+        return element(by.css('#loading')).isDisplayed().then(function(visible) {
+          return visible === false;
+        });
+      });
     });
   }
 
@@ -92,7 +107,7 @@
       global.baseUrl = baseUrl;
       global._ = lodash;
       global.waitForUrl = waitForUrl;
-      global.displays = displays;
+      global.waitAsyncCalls = waitAsyncCalls;
 
       browser.driver.manage().window().setSize(1280, 800);
       jasmine.getEnv().addReporter(new ScreenshotReporter("./tmp/agora/screenshots"));

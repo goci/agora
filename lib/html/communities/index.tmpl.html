@@ -6,7 +6,9 @@
   <div ng-if="communities.length">
     <ul test-name="communities-list">
       <li ng-repeat="c in communities">
-        <header>{{c.name}}</header>
+        <header>
+          <a ui-sref="communities_show({id: c.id})">{{c.name}}</a>
+        </header>
         <div class="content">
           <p>{{c.description}}</p>
 

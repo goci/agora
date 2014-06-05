@@ -5,7 +5,8 @@
 
   .constant('states', [
     'user_edit',
-    'communities_index' // { url: '/communities', controller: 'CommunitiesIndex', templateUrl: '/communities/index.tmpl.html' }
+    'communities_index', // { url: '/communities', controller: 'CommunitiesIndex', templateUrl: '/communities/index.tmpl.html' }
+    'communities_show'
   ])
 
   .config(['$stateProvider', '$urlRouterProvider', 'states',
@@ -37,7 +38,11 @@
       function urlForState(state) {
         var pieces = state.split('_');
         var path = pieces.join('/');
-        return '/' + path.replace(/\/index$/, '');
+
+        path = path.replace(/\/index$/, '')
+                   .replace(/show$/, ':id');
+
+        return '/' + path;
       }
 
       function controllerForState(state) {

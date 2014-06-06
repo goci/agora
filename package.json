@@ -49,5 +49,11 @@
     "protractor": "~0.22.0",
     "q": "^1.0.0",
     "zeparser": "0.0.7"
+  },
+  "dependencies": {
+    "grunt-protractor-runner": "^0.2.5",
+    "grunt-sass": "^0.12.1",
+    "node-sass": "^0.8.6",
+    "protractor": "^0.22.0"
   }
 }
